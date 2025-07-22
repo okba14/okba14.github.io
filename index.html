@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guiar Oqba | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      font-family: 'Fira Code', monospace;
+      overflow-x: hidden;
+    }
+    .hero {
+      text-align: center;
+      padding-top: 60px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero img {
+      width: 120px;
+      border-radius: 50%;
+      border: 2px solid #00ffcc;
+      margin-bottom: 20px;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: #cccccc;
+    }
+    .bio {
+      margin-top: 20px;
+      font-size: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #bbbbbb;
+    }
+    .section-title {
+      margin-top: 60px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border-left: 4px solid #00ffcc;
+      padding-left: 12px;
+    }
+    .card {
+      background-color: rgba(30, 30, 30, 0.9);
+      border: 1px solid #2c2c2c;
+      backdrop-filter: blur(4px);
+    }
+    .card h5,
+    .card h6,
+    .card p,
+    .card a {
+  color: #f0f0f0 !important;
+  font-weight: 500;
+  font-size: 1rem;
+  }
+    .btn-custom {
+      background-color: #00ffcc;
+      color: black;
+      border: none;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      border-top: 1px solid #2c2c2c;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #matrixCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+
+<div class="container position-relative" style="z-index: 2;">
+  <div class="hero">
+    <img src="https://avatars.githubusercontent.com/u/000000?v=4" alt="Guiar Logo" />
+    <h1>Guiar Oqba</h1>
+    <p class="subtitle">Researcher | Reverse Engineer | Developer</p>
+    <p class="bio">
+      Independent security researcher with deep expertise in low-level systems, Web3 and blockchain protocol analysis.
+      Specialized in C and Assembly for vulnerability research, binary instrumentation, and advanced exploit techniques.
+      Passionate about deconstructing systems and building secure foundations.
+    </p>
+    <button class="btn btn-custom m-2" onclick="showHex()">🧬 Live Hex Viewer</button>
+    <button class="btn btn-custom m-2" onclick="disassemblePage()">🧩 Disassemble This Page</button>
+  </div>
+
+  <div class="section-title">🧾 Published Reports</div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3 p-3">
+        <h5>Report Title #1</h5>
+        <p>Third Report on Entropy Patterns Concerning Repetitions in 24-Word Mnemonic Phrases.</p>
+        <a href="https://zenodo.org/records/15786076" class="btn btn-custom btn-sm" target="_blank">View Report</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-3 p-3">
+        <h5>Report Title #2</h5>
+        <p>Statistical Weaknesses in BIP39 Seed Phrases and Their Real-World Implications</p>
+        <a href="https://okba-sec.hashnode.dev/statistical-weaknesses-in-bip39-seed-phrases-and-their-real-world-implications" class="btn btn-custom btn-sm" target="_blank">View Report</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🛠️ My Tools</div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-3 p-3">
+        <h6>Frida Hook Toolkit</h6>
+        <p>Custom C-level hooks for analyzing Android/iOS apps and browser traffic.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3 p-3">
+        <h6>String Hunter</h6>
+        <p>Recursive sensitive string scanner in binary files with pattern matching and entropy filter.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3 p-3">
+        <h6>r2 Power Scripts</h6>
+        <p>Advanced r2 + GDB automation scripts for tracing memory and symbol resolution.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🌐 Profiles & Contacts</div>
+  <ul>
+    <li><a href="https://github.com/okba14" target="_blank">GitHub</a></li>
+    <li><a href="https://orcid.org/0009-0008-1629-0002" target="_blank">ORCID</a></li>
+    <li><a href="https://zenodo.org/communities/guiar/" target="_blank">Zenodo</a></li>
+    <li><a href="https://hashnode.com/@okba" target="_blank">Hashnode Blog</a></li>
+    <li><a href="https://t.me/@Okba_elkantara" target="_blank">Telegram</a></li>
+    <li><a href="www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">LinkedIn</a></li>
+    <li><a href="tel:+213700000000">+213 671 36 04 38</a></li>
+  </ul>
+
+  <footer>
+    &copy; 2025 Guiar Oqba. Built with &lt;/&gt; and low-level logic.
+  </footer>
+</div>
+
+<!-- Modal Viewer -->
+<div id="hexModal" class="modal" tabindex="-1" style="display:none;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title">Live Hex Viewer</h5>
+        <button type="button" class="btn-close" onclick="closeHex()"></button>
+      </div>
+      <div class="modal-body">
+        <pre id="hexDump" style="max-height: 400px; overflow-y: auto;"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Matrix effect
+  const canvas = document.getElementById("matrixCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  const chars = "01#@$%&<>[]/\\=".split("");
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ffcc";
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+      drops[i]++;
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+    }
+  }
+
+  let matrixInterval = setInterval(drawMatrix, 50);
+  setTimeout(() => {
+    clearInterval(matrixInterval);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }, 6000);
+
+  // Hex viewer
+  function showHex() {
+    const html = document.documentElement.outerHTML;
+    let hex = "";
+    for (let i = 0; i < html.length; i++) {
+      hex += html.charCodeAt(i).toString(16).padStart(2, "0") + " ";
+      if ((i + 1) % 32 === 0) hex += "\n";
+    }
+    document.getElementById("hexDump").textContent = hex;
+    document.getElementById("hexModal").style.display = "block";
+  }
+  function closeHex() {
+    document.getElementById("hexModal").style.display = "none";
+  }
+
+  // Disassemble button
+  function disassemblePage() {
+    const html = document.documentElement.outerHTML;
+    alert("Disassembled Length: " + html.length + " bytes");
+    console.log(html);
+  }
+</script>
+</body>
+</html>
