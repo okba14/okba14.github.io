@@ -218,6 +218,7 @@
   const ctx = canvas.getContext("2d");
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
+
   const chars = "01#@$%&<>[]/\\=".split("");
   const fontSize = 14;
   const columns = canvas.width / fontSize;
@@ -239,9 +240,19 @@
   }
 
   let matrixInterval = setInterval(drawMatrix, 50);
+
+  // After 6s, gradually fade out the matrix instead of stopping suddenly
   setTimeout(() => {
     clearInterval(matrixInterval);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let opacity = 0.05;
+    const fadeOut = setInterval(() => {
+      ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      opacity += 0.05;
+      if (opacity >= 1) {
+        clearInterval(fadeOut);
+      }
+    }, 100);
   }, 6000);
 
   // Hex viewer
@@ -255,6 +266,7 @@
     document.getElementById("hexDump").textContent = hex;
     document.getElementById("hexModal").style.display = "block";
   }
+
   function closeHex() {
     document.getElementById("hexModal").style.display = "none";
   }
