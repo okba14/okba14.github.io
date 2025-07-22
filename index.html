@@ -128,8 +128,8 @@
 <div class="container position-relative" style="z-index: 2;">
   <div class="hero">
     <img src="assets/1.jpg" alt="Guiar Logo" />
-    <h1>Guiar Oqba</h1>
-    <p class="subtitle">Researcher | Reverse Engineer | Developer</p>
+    <h1 id="nameTitle">Guiar Oqba</h1>
+    <p class="subtitle" id="subtitle">Researcher | Reverse Engineer | Developer</p>
     <p class="bio">
       Independent security researcher with deep expertise in low-level systems, Web3 and blockchain protocol analysis.
       Specialized in C and Assembly for vulnerability research, binary instrumentation, and advanced exploit techniques.
@@ -190,9 +190,10 @@
     <li><a href="tel:+213700000000">+213 671 36 04 38</a></li>
   </ul>
 
-  <footer>
-    &copy; 2025 Guiar Oqba. Built with &lt;/&gt; and low-level logic.
-  </footer>
+  <footer class="text-center mt-5 mb-3 text-muted small">
+  &copy; 2025 <strong>Guiar Oqba</strong> • &#128187; All rights reserved<br>
+  <em>Focused on low-level tooling & binary research &#128295;</em>
+ </footer>
 </div>
 
 <!-- Modal Viewer -->
@@ -265,5 +266,26 @@
     console.log(html);
   }
 </script>
+  <script>
+  const title = document.getElementById('nameTitle');
+  const subtitle = document.getElementById('subtitle');
+
+  function addHoverEffect(el, scale = 1.04, glow = true) {
+    el.addEventListener('mouseenter', () => {
+      el.style.transform = `scale(${scale})`;
+      el.style.transition = 'transform 0.3s ease, text-shadow 0.3s ease';
+      if (glow) el.style.textShadow = '0 0 8px rgba(255,255,255,0.6)';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'scale(1)';
+      el.style.textShadow = 'none';
+    });
+  }
+
+  addHoverEffect(title, 1.06, true);
+  addHoverEffect(subtitle, 1.03, false);
+</script>
+  
 </body>
 </html>
