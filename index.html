@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Guiar Oqba | Portfolio</title>
-  <meta name="description" content="Reverse engineering, Web3 analysis, and binary tooling by Guiar Oqba." />
+  <meta name="description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta name="author" content="Guiar Oqba" />
   <meta name="robots" content="index, follow" />
 
@@ -14,24 +14,18 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://okba14.github.io/" />
   <meta property="og:title" content="Guiar Oqba | Portfolio" />
-  <meta property="og:description" content="Reverse engineering, Web3 analysis, and binary tooling by Guiar Oqba." />
+  <meta property="og:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta property="og:image" content="https://okba14.github.io/assets/1.jpg" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Guiar Oqba | Portfolio" />
-  <meta name="twitter:description" content="Reverse engineering, Web3 analysis, and binary tooling by Guiar Oqba." />
+  <meta name="twitter:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta name="twitter:image" content="https://okba14.github.io/assets/1.jpg" />
 
-  <!-- Favicon (اختياري) -->
   <link rel="icon" type="image/png" href="https://okba14.github.io/assets/1.jpg" />
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Fonts (اختياري - Fira Code مثلاً) -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-</head>
 
   <style>
     body {
@@ -89,10 +83,10 @@
     .card h6,
     .card p,
     .card a {
-  color: #f0f0f0 !important;
-  font-weight: 500;
-  font-size: 1rem;
-  }
+      color: #f0f0f0 !important;
+      font-weight: 500;
+      font-size: 1rem;
+    }
     .btn-custom {
       background-color: #00ffcc;
       color: black;
@@ -124,21 +118,35 @@
 </head>
 <body>
 <canvas id="matrixCanvas"></canvas>
-
 <div class="container position-relative" style="z-index: 2;">
   <div class="hero">
     <img src="assets/1.jpg" alt="Guiar Logo" />
     <h1 id="nameTitle">Guiar Oqba</h1>
-    <p class="subtitle" id="subtitle">Researcher | Reverse Engineer | Developer</p>
+    <p class="subtitle" id="subtitle">Low-Level Developer | Web3 Explorer | Cybersecurity Researcher</p>
     <p class="bio">
-      Independent security researcher with deep expertise in low-level systems, Web3 and blockchain protocol analysis.
-      Specialized in C and Assembly for vulnerability research, binary instrumentation, and advanced exploit techniques.
-      Passionate about deconstructing systems and building secure foundations.
+      Breaking systems to make them stronger. Builder of <strong>GuiarStr</strong>, a modern C string library designed for performance, safety, and simplicity. Passionate about open-source development and reversing technologies.
     </p>
     <button class="btn btn-custom m-2" onclick="showHex()">🧬 Live Hex Viewer</button>
     <button class="btn btn-custom m-2" onclick="disassemblePage()">🧩 Disassemble This Page</button>
   </div>
 
+  <div class="section-title">📦 Featured Project: GuiarStr</div>
+  <div class="card p-4 mb-4">
+    <h5>GuiarStr - C String Utility Library</h5>
+    <p>
+      GuiarStr is a lightweight and secure C string library designed to replace unsafe functions with clean, modular, and testable components.
+    </p>
+    <ul>
+      <li><a href="https://libraries.io/github/okba14/guiarstr" target="_blank">📚 libraries.io Overview</a></li>
+      <li><a href="https://www.libhunt.com/r/guiarstr" target="_blank">📊 LibHunt Ranking</a></li>
+      <li><a href="https://github.com/okba14/guiarstr/releases/tag/v1.0.0" target="_blank">🚀 v1.0.0 Release</a></li>
+      <li><a href="https://www.libhunt.com/posts/1440088-guiarstr-vs-c-a-user-suggested-alternative" target="_blank">📖 Comparison: GuiarStr vs Standard C</a></li>
+    </ul>
+    <a class="btn btn-custom mt-2" href="https://github.com/okba14/guiarstr" target="_blank">🔗 View on GitHub</a>
+  </div>
+
+  <!-- باقي الأقسام بدون تعديل -->
+  
   <div class="section-title">🧾 Published Reports</div>
   <div class="row">
     <div class="col-md-6">
@@ -179,24 +187,25 @@
     </div>
   </div>
 
-  <div class="section-title">🌐 Profiles & Contacts</div>
-  <ul>
-    <li><a href="https://github.com/okba14" target="_blank">GitHub</a></li>
-    <li><a href="https://orcid.org/0009-0008-1629-0002" target="_blank">ORCID</a></li>
-    <li><a href="https://zenodo.org/communities/guiar/" target="_blank">Zenodo</a></li>
-    <li><a href="https://hashnode.com/@okba" target="_blank">Hashnode Blog</a></li>
-    <li><a href="https://t.me/@Okba_elkantara" target="_blank">Telegram</a></li>
-    <li><a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">LinkedIn</a></li>
-    <li><a href="tel:+213700000000">+213 671 36 04 38</a></li>
-  </ul>
+ <div class="section-title">🌐 Profiles & Contacts</div>
+<ul class="list-unstyled ms-3">
+  <li>💻 <a href="https://github.com/okba14" target="_blank">GitHub</a></li>
+  <li>🧬 <a href="https://orcid.org/0009-0008-1629-0002" target="_blank">ORCID Profile</a></li>
+  <li>📚 <a href="https://zenodo.org/communities/guiar/" target="_blank">Zenodo Community</a></li>
+  <li>✍️ <a href="https://hashnode.com/@okba" target="_blank">Hashnode Blog</a></li>
+  <li>📨 <a href="https://t.me/@Okba_elkantara" target="_blank">Telegram Contact</a></li>
+  <li>🔗 <a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">LinkedIn Profile</a></li>
+  <li>📞 <a href="tel:+213700000000">+213 671 36 04 38</a></li>
+</ul>
 
-  <footer class="text-center mt-5 mb-3 text-muted small">
+
+<footer class="text-center mt-5 mb-3 text-muted small">
   &copy; 2025 <strong>Guiar Oqba</strong> • &#128187; All rights reserved<br>
   <em>Focused on low-level tooling & binary research &#128295;</em>
- </footer>
-</div>
+</footer>
 
-<!-- Modal Viewer -->
+
+
 <div id="hexModal" class="modal" tabindex="-1" style="display:none;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content bg-dark text-light">
