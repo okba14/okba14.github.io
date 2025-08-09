@@ -5,308 +5,1649 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Guiar Oqba | Portfolio</title>
+  <title>Guiar Oqba | Low-Level Systems Portfolio</title>
   <meta name="description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta name="author" content="Guiar Oqba" />
   <meta name="robots" content="index, follow" />
-
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://okba14.github.io/" />
-  <meta property="og:title" content="Guiar Oqba | Portfolio" />
+  <meta property="og:title" content="Guiar Oqba | Low-Level Systems Portfolio" />
   <meta property="og:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta property="og:image" content="https://okba14.github.io/assets/1.jpg" />
-
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Guiar Oqba | Portfolio" />
+  <meta name="twitter:title" content="Guiar Oqba | Low-Level Systems Portfolio" />
   <meta name="twitter:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
   <meta name="twitter:image" content="https://okba14.github.io/assets/1.jpg" />
-
   <link rel="icon" type="image/png" href="https://okba14.github.io/assets/1.jpg" />
+  
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  
   <style>
+    :root {
+      --primary-color: #00ffcc;
+      --secondary-color: #ff00ff;
+      --accent-color: #00ccff;
+      --bg-dark: #0a0a0a;
+      --bg-card: rgba(20, 20, 30, 0.8);
+      --text-primary: #f0f0f0;
+      --text-secondary: #bbbbbb;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      background-color: #121212;
-      color: #f5f5f5;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
       font-family: 'Fira Code', monospace;
       overflow-x: hidden;
-    }
-    .hero {
-      text-align: center;
-      padding-top: 60px;
       position: relative;
-      z-index: 2;
     }
-    .hero img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 255, 204, 0.6);
-      box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-   }
-    .hero img:hover {
-     transform: scale(1.05);
-     box-shadow: 0 0 16px rgba(0, 255, 204, 0.6);
-   }
-    .subtitle {
-      font-size: 1.2rem;
-      color: #cccccc;
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-    .bio {
-      margin-top: 20px;
-      font-size: 1rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #bbbbbb;
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(20, 20, 30, 0.2);
     }
-    .section-title {
-      margin-top: 60px;
-      margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 1.5rem;
-      border-left: 4px solid #00ffcc;
-      padding-left: 12px;
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
     }
-    .card {
-      background-color: rgba(30, 30, 30, 0.9);
-      border: 1px solid #2c2c2c;
-      backdrop-filter: blur(4px);
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
     }
-    .card h5,
-    .card h6,
-    .card p,
-    .card a {
-      color: #f0f0f0 !important;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-    .btn-custom {
-      background-color: #00ffcc;
-      color: black;
-      border: none;
-    }
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.75);
-      border-top: 1px solid #2c2c2c;
-    }
-    a {
-      color: #00ffcc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    
+    /* Matrix background */
     #matrixCanvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
       pointer-events: none;
+      opacity: 0.7;
+    }
+    
+    /* Binary particles background */
+    #particlesCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+    }
+    
+    .navbar-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      color: var(--primary-color) !important;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .nav-link {
+      color: var(--text-secondary) !important;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding-top: 140px;
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      margin-bottom: 25px;
+      transition: all 0.5s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 255, 204, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0);
+      }
+    }
+    
+    .hero img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
+    }
+    
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(0, 255, 204, 0.5), 0 0 20px rgba(0, 255, 204, 0.3);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.5);
+      }
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    
+    .bio {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .hero-buttons {
+      margin-top: 20px;
+    }
+    
+    .btn-custom {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      color: var(--bg-dark);
+      border: none;
+      padding: 12px 25px;
+      margin: 0 10px;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    
+    .btn-custom:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: -1;
+      transition: all 0.3s ease;
+      transform: translateX(-100%);
+    }
+    
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+      color: var(--bg-dark);
+    }
+    
+    .btn-custom:hover:before {
+      transform: translateX(0);
+    }
+    
+    /* Section styling */
+    .section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+    
+    /* Cards */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      height: 100%;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 255, 204, 0.2);
+      border-color: var(--primary-color);
+    }
+    
+    .card-header {
+      background-color: rgba(0, 255, 204, 0.1);
+      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+      padding: 15px 20px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    
+    .card-body {
+      padding: 20px;
+    }
+    
+    .card h5,
+    .card h6,
+    .card p,
+    .card a {
+      color: var(--text-primary) !important;
+      font-weight: 500;
+    }
+    
+    .card p {
+      color: var(--text-secondary) !important;
+      margin-bottom: 15px;
+    }
+    
+    /* Project showcase */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+    
+    .project-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Terminal section */
+    .terminal {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .terminal-header {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    
+    .terminal-button {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .terminal-button.red {
+      background-color: #ff5f56;
+    }
+    
+    .terminal-button.yellow {
+      background-color: #ffbd2e;
+    }
+    
+    .terminal-button.green {
+      background-color: #27c93f;
+    }
+    
+    .terminal-body {
+      font-family: 'Fira Code', monospace;
+      color: #33ff33;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    
+    .terminal-line {
+      margin-bottom: 5px;
+    }
+    
+    .terminal-prompt {
+      color: #00ffcc;
+    }
+    
+    .terminal-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #33ff33;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    /* Skills section */
+    .skill-item {
+      margin-bottom: 25px;
+    }
+    
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .skill-bar {
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 5px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+      width: 50%;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      padding-right: 40px;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      padding-left: 40px;
+    }
+    
+    .timeline-content {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 255, 204, 0.2);
+      border-color: var(--primary-color);
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(0, 255, 204, 0.2);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-dot {
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -10px;
+    }
+    
+    .timeline-date {
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .timeline-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    /* Contact section */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateX(10px);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 204, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover .contact-icon {
+      background-color: var(--primary-color);
+      color: var(--bg-dark);
+      transform: scale(1.1);
+    }
+    
+    .contact-info h4 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    
+    .contact-info p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: rgba(10, 10, 10, 0.8);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid rgba(0, 255, 204, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .social-links {
+      margin-bottom: 20px;
+    }
+    
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 204, 0.1);
+      color: var(--primary-color);
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-color);
+      color: var(--bg-dark);
+      transform: translateY(-5px);
+    }
+    
+    /* Modal styling */
+    .modal-content {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      color: var(--text-primary);
+    }
+    
+    .modal-header {
+      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+    }
+    
+    .modal-title {
+      color: var(--primary-color);
+    }
+    
+    .btn-close {
+      filter: invert(1);
+    }
+    
+    /* Hex viewer */
+    #hexDump {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #33ff33;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 40px !important;
+        padding-right: 0 !important;
+      }
+      
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-dot {
+        left: 10px !important;
+        right: auto !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .bio {
+        font-size: 1rem;
+      }
+      
+      .btn-custom {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Loading animation */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loader {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+    
+    .loader-circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 3px solid rgba(0, 255, 204, 0.2);
+      border-radius: 50%;
+      animation: rotate 2s linear infinite;
+    }
+    
+    .loader-circle:nth-child(2) {
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+      border-color: rgba(0, 204, 255, 0.4);
+      animation-duration: 1.5s;
+      animation-direction: reverse;
+    }
+    
+    .loader-circle:nth-child(3) {
+      width: 60%;
+      height: 60%;
+      top: 20%;
+      left: 20%;
+      border-color: rgba(255, 0, 255, 0.6);
+      animation-duration: 1s;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .loader-text {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: var(--primary-color);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
-<canvas id="matrixCanvas"></canvas>
-<div class="container position-relative" style="z-index: 2;">
-  <div class="hero">
-    <img src="assets/1.jpg" alt="Guiar Logo" />
-    <h1 id="nameTitle">Guiar Oqba</h1>
-    <p class="subtitle" id="subtitle">Low-Level Developer | Web3 Explorer | Cybersecurity Researcher</p>
-    <p class="bio">
-      Breaking systems to make them stronger. Builder of <strong>GuiarStr</strong>, a modern C string library designed for performance, safety, and simplicity. Passionate about open-source development and reversing technologies.
-    </p>
-    <button class="btn btn-custom m-2" onclick="showHex()">🧬 Live Hex Viewer</button>
-    <button class="btn btn-custom m-2" onclick="disassemblePage()">🧩 Disassemble This Page</button>
+  <!-- Loader -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader">
+      <div class="loader-circle"></div>
+      <div class="loader-circle"></div>
+      <div class="loader-circle"></div>
+      <div class="loader-text">LOADING...</div>
+    </div>
   </div>
 
-  <div class="section-title">📦 Featured Project: GuiarStr</div>
-  <div class="card p-4 mb-4">
-    <h5>GuiarStr - C String Utility Library</h5>
-    <p>
-      GuiarStr is a lightweight and secure C string library designed to replace unsafe functions with clean, modular, and testable components.
-    </p>
-    <ul>
-      <li><a href="https://libraries.io/github/okba14/guiarstr" target="_blank">📚 libraries.io Overview</a></li>
-      <li><a href="https://www.libhunt.com/r/guiarstr" target="_blank">📊 LibHunt Ranking</a></li>
-      <li><a href="https://github.com/okba14/guiarstr/releases/tag/v1.0.0" target="_blank">🚀 v1.0.0 Release</a></li>
-      <li><a href="https://www.libhunt.com/posts/1440088-guiarstr-vs-c-a-user-suggested-alternative" target="_blank">📖 Comparison: GuiarStr vs Standard C</a></li>
-    </ul>
-    <a class="btn btn-custom mt-2" href="https://github.com/okba14/guiarstr" target="_blank">🔗 View on GitHub</a>
-  </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#home">
+        <span class="binary-text">GUIAR</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#timeline">Timeline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <!-- باقي الأقسام بدون تعديل -->
+  <!-- Matrix Canvas Background -->
+  <canvas id="matrixCanvas"></canvas>
   
-  <div class="section-title">🧾 Published Reports</div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-3 p-3">
-        <h5>Report Title #1</h5>
-        <p>Third Report on Entropy Patterns Concerning Repetitions in 24-Word Mnemonic Phrases.</p>
-        <a href="https://zenodo.org/records/15786076" class="btn btn-custom btn-sm" target="_blank">View Report</a>
+  <!-- Particles Canvas Background -->
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <img src="assets/1.jpg" alt="Guiar Logo" class="animate__animated animate__fadeInDown" />
+      <h1 class="animate__animated animate__fadeIn">GUIAR OQBA</h1>
+      <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Low-Level Systems Developer | Security Researcher | Binary Explorer</p>
+      <p class="bio animate__animated animate__fadeIn animate__delay-2s">
+        Breaking systems to make them stronger. Builder of <strong>GuiarStr</strong>, a modern C string library designed for performance, safety, and simplicity. Passionate about open-source development and reversing technologies.
+      </p>
+      <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-3s">
+        <button class="btn btn-custom" onclick="showHex()">
+          <i class="fas fa-code"></i> Live Hex Viewer
+        </button>
+        <button class="btn btn-custom" onclick="disassemblePage()">
+          <i class="fas fa-microchip"></i> Disassemble This Page
+        </button>
+        <button class="btn btn-custom" onclick="showTerminal()">
+          <i class="fas fa-terminal"></i> Terminal
+        </button>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card mb-3 p-3">
-        <h5>Report Title #2</h5>
-        <p>Statistical Weaknesses in BIP39 Seed Phrases and Their Real-World Implications</p>
-        <a href="https://okba-sec.hashnode.dev/statistical-weaknesses-in-bip39-seed-phrases-and-their-real-world-implications" class="btn btn-custom btn-sm" target="_blank">View Report</a>
+  </section>
+
+  <!-- Featured Project Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">📦 FEATURED PROJECT: GUIARSTR</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card project-card">
+            <div class="card-header">
+              <h3 class="mb-0">GuiarStr - C String Utility Library</h3>
+            </div>
+            <div class="card-body">
+              <p class="lead">
+                GuiarStr is a lightweight and secure C string library designed to replace unsafe functions with clean, modular, and testable components.
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Key Features:</h5>
+                  <ul>
+                    <li>Memory-safe string operations</li>
+                    <li>Buffer overflow protection</li>
+                    <li>UTF-8 support</li>
+                    <li>Minimal memory footprint</li>
+                    <li>Comprehensive test suite</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h5>Use Cases:</h5>
+                  <ul>
+                    <li>Systems programming</li>
+                    <li>Embedded development</li>
+                    <li>Security-critical applications</li>
+                    <li>Performance-sensitive code</li>
+                    <li>Legacy code modernization</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="stat">
+                  <div class="stat-value">1.0.0</div>
+                  <div class="stat-label">Latest Release</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">20+</div>
+                  <div class="stat-label">Functions</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">MIT</div>
+                  <div class="stat-label">License</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">100%</div>
+                  <div class="stat-label">C99 Compatible</div>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap mt-4">
+                <a href="https://github.com/okba14/guiarstr" class="btn btn-custom m-1" target="_blank">
+                  <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://libraries.io/github/okba14/guiarstr" class="btn btn-custom m-1" target="_blank">
+                  <i class="fas fa-book"></i> Libraries.io
+                </a>
+                <a href="https://www.libhunt.com/r/guiarstr" class="btn btn-custom m-1" target="_blank">
+                  <i class="fas fa-chart-line"></i> LibHunt
+                </a>
+                <a href="https://github.com/okba14/guiarstr/releases/tag/v1.0.0" class="btn btn-custom m-1" target="_blank">
+                  <i class="fas fa-download"></i> Download v1.0.0
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects Section -->
+  <section class="section bg-dark bg-opacity-25">
+    <div class="container">
+      <h2 class="section-title">🛠️ OTHER PROJECTS & TOOLS</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0">Frida Hook Toolkit</h5>
+            </div>
+            <div class="card-body">
+              <p>Custom C-level hooks for analyzing Android/iOS apps and browser traffic.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Security</span>
+                <span class="badge bg-secondary">Reverse Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0">String Hunter</h5>
+            </div>
+            <div class="card-body">
+              <p>Recursive sensitive string scanner in binary files with pattern matching and entropy filter.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Forensics</span>
+                <span class="badge bg-secondary">Binary Analysis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0">r2 Power Scripts</h5>
+            </div>
+            <div class="card-body">
+              <p>Advanced r2 + GDB automation scripts for tracing memory and symbol resolution.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Debugging</span>
+                <span class="badge bg-secondary">Automation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Published Reports Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">🧾 PUBLISHED REPORTS</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5>Report Title #1</h5>
+              <p>Third Report on Entropy Patterns Concerning Repetitions in 24-Word Mnemonic Phrases.</p>
+              <a href="https://zenodo.org/records/15786076" class="btn btn-custom btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt"></i> View Report
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5>Report Title #2</h5>
+              <p>Statistical Weaknesses in BIP39 Seed Phrases and Their Real-World Implications</p>
+              <a href="https://okba-sec.hashnode.dev/statistical-weaknesses-in-bip39-seed-phrases-and-their-real-world-implications" class="btn btn-custom btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt"></i> View Report
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section bg-dark bg-opacity-25">
+    <div class="container">
+      <h2 class="section-title">🔧 TECHNICAL SKILLS</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>C/C++</span>
+              <span>95%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="95%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>x86/ARM Assembly</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Reverse Engineering</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="85%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Binary Exploitation</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Cryptography</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Web3 & Blockchain</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="terminal mt-5">
+        <div class="terminal-header">
+          <div class="terminal-button red"></div>
+          <div class="terminal-button yellow"></div>
+          <div class="terminal-button green"></div>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line"><span class="terminal-prompt">$</span> whoami</div>
+          <div class="terminal-line">guiar_oqba</div>
+          <div class="terminal-line"><span class="terminal-prompt">$</span> cat skills.txt</div>
+          <div class="terminal-line">Low-level systems programming</div>
+          <div class="terminal-line">Binary analysis and reverse engineering</div>
+          <div class="terminal-line">Security research and vulnerability assessment</div>
+          <div class="terminal-line">C library development and optimization</div>
+          <div class="terminal-line"><span class="terminal-prompt">$</span> _</div>
+          <div class="terminal-cursor"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="section">
+    <div class="container">
+      <h2 class="section-title">📅 JOURNEY</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2023 - Present</div>
+            <div class="timeline-title">GuiarStr Development</div>
+            <div class="timeline-description">Designed and developed GuiarStr, a modern C string library focused on security and performance.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-title">Security Researcher</div>
+            <div class="timeline-description">Published research on statistical weaknesses in BIP39 seed phrases and their implications.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2021</div>
+            <div class="timeline-title">Binary Analysis Tools</div>
+            <div class="timeline-description">Created custom tools for binary analysis and reverse engineering, including String Hunter and r2 scripts.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2020</div>
+            <div class="timeline-title">Low-Level Programming</div>
+            <div class="timeline-description">Started deep dive into systems programming, assembly languages, and memory management.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section bg-dark bg-opacity-25">
+    <div class="container">
+      <h2 class="section-title">🌐 GET IN TOUCH</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fab fa-github"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>GitHub</h4>
+                  <p><a href="https://github.com/okba14" target="_blank">github.com/okba14</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-id-card"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>ORCID Profile</h4>
+                  <p><a href="https://orcid.org/0009-0008-1629-0002" target="_blank">orcid.org/0009-0008-1629-0002</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>Zenodo Community</h4>
+                  <p><a href="https://zenodo.org/communities/guiar/" target="_blank">zenodo.org/communities/guiar/</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-blog"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>Hashnode Blog</h4>
+                  <p><a href="https://hashnode.com/@okba" target="_blank">hashnode.com/@okba</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fab fa-telegram"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>Telegram</h4>
+                  <p><a href="https://t.me/@Okba_elkantara" target="_blank">@Okba_elkantara</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fab fa-linkedin"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>LinkedIn</h4>
+                  <p><a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">linkedin.com/in/guiar-oqba</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-info">
+                  <h4>Phone</h4>
+                  <p><a href="tel:+213700000000">+213 671 36 04 38</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/okba14" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://orcid.org/0009-0008-1629-0002" target="_blank"><i class="fas fa-id-card"></i></a>
+        <a href="https://hashnode.com/@okba" target="_blank"><i class="fas fa-blog"></i></a>
+        <a href="https://t.me/@Okba_elkantara" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p>&copy; 2025 <strong>Guiar Oqba</strong> • &#128187; All rights reserved</p>
+      <p><em>Focused on low-level tooling & binary research &#128295;</em></p>
+    </div>
+  </footer>
+
+  <!-- Hex Viewer Modal -->
+  <div id="hexModal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Live Hex Viewer</h5>
+          <button type="button" class="btn-close" onclick="closeHex()"></button>
+        </div>
+        <div class="modal-body">
+          <pre id="hexDump" style="max-height: 400px; overflow-y: auto;"></pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom" onclick="closeHex()">Close</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="section-title">🛠️ My Tools</div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card mb-3 p-3">
-        <h6>Frida Hook Toolkit</h6>
-        <p>Custom C-level hooks for analyzing Android/iOS apps and browser traffic.</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card mb-3 p-3">
-        <h6>String Hunter</h6>
-        <p>Recursive sensitive string scanner in binary files with pattern matching and entropy filter.</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card mb-3 p-3">
-        <h6>r2 Power Scripts</h6>
-        <p>Advanced r2 + GDB automation scripts for tracing memory and symbol resolution.</p>
-      </div>
-    </div>
-  </div>
-
- <div class="section-title">🌐 Profiles & Contacts</div>
-<ul class="list-unstyled ms-3">
-  <li>💻 <a href="https://github.com/okba14" target="_blank">GitHub</a></li>
-  <li>🧬 <a href="https://orcid.org/0009-0008-1629-0002" target="_blank">ORCID Profile</a></li>
-  <li>📚 <a href="https://zenodo.org/communities/guiar/" target="_blank">Zenodo Community</a></li>
-  <li>✍️ <a href="https://hashnode.com/@okba" target="_blank">Hashnode Blog</a></li>
-  <li>📨 <a href="https://t.me/@Okba_elkantara" target="_blank">Telegram Contact</a></li>
-  <li>🔗 <a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">LinkedIn Profile</a></li>
-  <li>📞 <a href="tel:+213700000000">+213 671 36 04 38</a></li>
-</ul>
-
-
-<footer class="text-center mt-5 mb-3 text-muted small">
-  &copy; 2025 <strong>Guiar Oqba</strong> • &#128187; All rights reserved<br>
-  <em>Focused on low-level tooling & binary research &#128295;</em>
-</footer>
-
-
-
-<div id="hexModal" class="modal" tabindex="-1" style="display:none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-light">
-      <div class="modal-header">
-        <h5 class="modal-title">Live Hex Viewer</h5>
-        <button type="button" class="btn-close" onclick="closeHex()"></button>
-      </div>
-      <div class="modal-body">
-        <pre id="hexDump" style="max-height: 400px; overflow-y: auto;"></pre>
+  <!-- Terminal Modal -->
+  <div id="terminalModal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Terminal</h5>
+          <button type="button" class="btn btn-close" onclick="closeTerminal()"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="terminal" style="border-radius: 0;">
+            <div class="terminal-header">
+              <div class="terminal-button red"></div>
+              <div class="terminal-button yellow"></div>
+              <div class="terminal-button green"></div>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+              <div class="terminal-line"><span class="terminal-prompt">$</span> ./welcome.sh</div>
+              <div class="terminal-line">Welcome to Guiar Oqba's Terminal</div>
+              <div class="terminal-line">Type 'help' for available commands</div>
+              <div class="terminal-line"><span class="terminal-prompt">$</span> _</div>
+              <div class="terminal-cursor"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" class="form-control" id="terminalInput" placeholder="Enter command..." style="background-color: #1e1e1e; border: 1px solid #444; color: #33ff33; font-family: 'Fira Code', monospace;">
+          <button type="button" class="btn btn-custom" onclick="executeCommand()">Execute</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Scripts -->
-<script>
-  // Matrix effect
-  const canvas = document.getElementById("matrixCanvas");
-  const ctx = canvas.getContext("2d");
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
-  const chars = "01#@$%&<>[]/\\=".split("");
-  const fontSize = 14;
-  const columns = canvas.width / fontSize;
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#00ffcc";
-    ctx.font = fontSize + "px monospace";
-    for (let i = 0; i < drops.length; i++) {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-      drops[i]++;
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-    }
-  }
-
-  let matrixInterval = setInterval(drawMatrix, 50);
-
-  // After 6s, gradually fade out the matrix instead of stopping suddenly
-  setTimeout(() => {
-    clearInterval(matrixInterval);
-    let opacity = 0.05;
-    const fadeOut = setInterval(() => {
-      ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      opacity += 0.05;
-      if (opacity >= 1) {
-        clearInterval(fadeOut);
-      }
-    }, 100);
-  }, 6000);
-
-  // Hex viewer
-  function showHex() {
-    const html = document.documentElement.outerHTML;
-    let hex = "";
-    for (let i = 0; i < html.length; i++) {
-      hex += html.charCodeAt(i).toString(16).padStart(2, "0") + " ";
-      if ((i + 1) % 32 === 0) hex += "\n";
-    }
-    document.getElementById("hexDump").textContent = hex;
-    document.getElementById("hexModal").style.display = "block";
-  }
-
-  function closeHex() {
-    document.getElementById("hexModal").style.display = "none";
-  }
-
-  // Disassemble button
-  function disassemblePage() {
-    const html = document.documentElement.outerHTML;
-    alert("Disassembled Length: " + html.length + " bytes");
-    console.log(html);
-  }
-</script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Scripts -->
   <script>
-  const title = document.getElementById('nameTitle');
-  const subtitle = document.getElementById('subtitle');
-
-  function addHoverEffect(el, scale = 1.04, glow = true) {
-    el.addEventListener('mouseenter', () => {
-      el.style.transform = `scale(${scale})`;
-      el.style.transition = 'transform 0.3s ease, text-shadow 0.3s ease';
-      if (glow) el.style.textShadow = '0 0 8px rgba(255,255,255,0.6)';
+    // Page loader
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1500);
     });
-
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = 'scale(1)';
-      el.style.textShadow = 'none';
+    
+    // Matrix effect
+    const matrixCanvas = document.getElementById("matrixCanvas");
+    const matrixCtx = matrixCanvas.getContext("2d");
+    
+    function resizeMatrixCanvas() {
+      matrixCanvas.width = window.innerWidth;
+      matrixCanvas.height = window.innerHeight;
+    }
+    
+    resizeMatrixCanvas();
+    window.addEventListener('resize', resizeMatrixCanvas);
+    
+    const matrixChars = "01#@$%&<>[]/\\={}~`";
+    const matrixFontSize = 14;
+    const matrixColumns = matrixCanvas.width / matrixFontSize;
+    const matrixDrops = Array(Math.floor(matrixColumns)).fill(1);
+    
+    function drawMatrix() {
+      matrixCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      matrixCtx.fillStyle = "#00ffcc";
+      matrixCtx.font = matrixFontSize + "px monospace";
+      
+      for (let i = 0; i < matrixDrops.length; i++) {
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        matrixCtx.fillText(char, i * matrixFontSize, matrixDrops[i] * matrixFontSize);
+        matrixDrops[i]++;
+        
+        if (matrixDrops[i] * matrixFontSize > matrixCanvas.height && Math.random() > 0.975) {
+          matrixDrops[i] = 0;
+        }
+      }
+    }
+    
+    let matrixInterval = setInterval(drawMatrix, 50);
+    
+    // Particles effect
+    const particlesCanvas = document.getElementById("particlesCanvas");
+    const particlesCtx = particlesCanvas.getContext("2d");
+    
+    function resizeParticlesCanvas() {
+      particlesCanvas.width = window.innerWidth;
+      particlesCanvas.height = window.innerHeight;
+    }
+    
+    resizeParticlesCanvas();
+    window.addEventListener('resize', resizeParticlesCanvas);
+    
+    const particles = [];
+    const particleCount = 50;
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * particlesCanvas.width;
+        this.y = Math.random() * particlesCanvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = Math.random() > 0.5 ? '#00ffcc' : '#ff00ff';
+      }
+      
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        if (this.x < 0 || this.x > particlesCanvas.width) {
+          this.speedX = -this.speedX;
+        }
+        
+        if (this.y < 0 || this.y > particlesCanvas.height) {
+          this.speedY = -this.speedY;
+        }
+      }
+      
+      draw() {
+        particlesCtx.fillStyle = this.color;
+        particlesCtx.beginPath();
+        particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        particlesCtx.fill();
+      }
+    }
+    
+    function initParticles() {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    
+    function animateParticles() {
+      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        
+        // Draw connections between particles
+        for (let j = i; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            particlesCtx.beginPath();
+            particlesCtx.strokeStyle = `rgba(0, 255, 204, ${1 - distance / 100})`;
+            particlesCtx.lineWidth = 0.5;
+            particlesCtx.moveTo(particles[i].x, particles[i].y);
+            particlesCtx.lineTo(particles[j].x, particles[j].y);
+            particlesCtx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(animateParticles);
+    }
+    
+    initParticles();
+    animateParticles();
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
-  }
-
-  addHoverEffect(title, 1.06, true);
-  addHoverEffect(subtitle, 1.03, false);
-</script>
-  
+    
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+      } else {
+        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+    
+    // Active navigation link
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', function() {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollY >= (sectionTop - 100)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Animate skill bars on scroll
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    function animateSkillBars() {
+      skillBars.forEach(bar => {
+        const barTop = bar.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (barTop < windowHeight - 100) {
+          const width = bar.getAttribute('data-width');
+          bar.style.width = width;
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', animateSkillBars);
+    animateSkillBars(); // Initial check
+    
+    // Hex viewer
+    function showHex() {
+      const html = document.documentElement.outerHTML;
+      let hex = "";
+      
+      for (let i = 0; i < html.length; i++) {
+        hex += html.charCodeAt(i).toString(16).padStart(2, "0") + " ";
+        
+        if ((i + 1) % 32 === 0) {
+          hex += "\n";
+        }
+      }
+      
+      document.getElementById("hexDump").textContent = hex;
+      const hexModal = new bootstrap.Modal(document.getElementById('hexModal'));
+      hexModal.show();
+    }
+    
+    function closeHex() {
+      const hexModal = bootstrap.Modal.getInstance(document.getElementById('hexModal'));
+      hexModal.hide();
+    }
+    
+    // Disassemble button
+    function disassemblePage() {
+      const html = document.documentElement.outerHTML;
+      alert("Disassembled Length: " + html.length + " bytes");
+      console.log(html);
+    }
+    
+    // Terminal
+    function showTerminal() {
+      const terminalModal = new bootstrap.Modal(document.getElementById('terminalModal'));
+      terminalModal.show();
+      document.getElementById('terminalInput').focus();
+    }
+    
+    function closeTerminal() {
+      const terminalModal = bootstrap.Modal.getInstance(document.getElementById('terminalModal'));
+      terminalModal.hide();
+    }
+    
+    function executeCommand() {
+      const input = document.getElementById('terminalInput');
+      const command = input.value.trim().toLowerCase();
+      const terminalBody = document.getElementById('terminalBody');
+      
+      // Remove cursor
+      const cursor = terminalBody.querySelector('.terminal-cursor');
+      if (cursor) {
+        cursor.remove();
+      }
+      
+      // Add command to terminal
+      const commandLine = document.createElement('div');
+      commandLine.className = 'terminal-line';
+      commandLine.innerHTML = `<span class="terminal-prompt">$</span> ${command}`;
+      terminalBody.appendChild(commandLine);
+      
+      // Process command
+      let response = '';
+      
+      switch(command) {
+        case 'help':
+          response = 'Available commands:<br>help - Show this help message<br>about - Information about Guiar Oqba<br>projects - List of projects<br>skills - Technical skills<br>contact - Contact information<br>clear - Clear terminal';
+          break;
+        case 'about':
+          response = 'Guiar Oqba - Low-Level Systems Developer<br>Passionate about systems programming, security research, and binary analysis.';
+          break;
+        case 'projects':
+          response = 'Projects:<br>- GuiarStr - C String Utility Library<br>- Frida Hook Toolkit<br>- String Hunter<br>- r2 Power Scripts';
+          break;
+        case 'skills':
+          response = 'Technical Skills:<br>- C/C++ (95%)<br>- x86/ARM Assembly (90%)<br>- Reverse Engineering (85%)<br>- Binary Exploitation (80%)<br>- Cryptography (75%)<br>- Web3 & Blockchain (70%)';
+          break;
+        case 'contact':
+          response = 'Contact Information:<br>- GitHub: github.com/okba14<br>- Telegram: @Okba_elkantara<br>- Email: Contact through GitHub<br>- LinkedIn: linkedin.com/in/guiar-oqba';
+          break;
+        case 'clear':
+          terminalBody.innerHTML = '';
+          break;
+        default:
+          response = `Command not found: ${command}<br>Type 'help' for available commands`;
+      }
+      
+      if (response) {
+        const responseLine = document.createElement('div');
+        responseLine.className = 'terminal-line';
+        responseLine.innerHTML = response;
+        terminalBody.appendChild(responseLine);
+      }
+      
+      // Add new prompt
+      const newPromptLine = document.createElement('div');
+      newPromptLine.className = 'terminal-line';
+      newPromptLine.innerHTML = '<span class="terminal-prompt">$</span> _';
+      terminalBody.appendChild(newPromptLine);
+      
+      // Add cursor
+      const newCursor = document.createElement('span');
+      newCursor.className = 'terminal-cursor';
+      newPromptLine.appendChild(newCursor);
+      
+      // Clear input
+      input.value = '';
+      
+      // Scroll to bottom
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+    
+    // Handle Enter key in terminal input
+    document.getElementById('terminalInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        executeCommand();
+      }
+    });
+    
+    // Binary text animation for logo
+    const binaryText = document.querySelector('.binary-text');
+    if (binaryText) {
+      const originalText = binaryText.textContent;
+      const binaryChars = '01';
+      let iteration = 0;
+      
+      const interval = setInterval(() => {
+        binaryText.textContent = binaryText.textContent
+          .split('')
+          .map((char, index) => {
+            if (index < iteration) {
+              return originalText[index];
+            }
+            return binaryChars[Math.floor(Math.random() * binaryChars.length)];
+          })
+          .join('');
+        
+        if (iteration >= originalText.length) {
+          clearInterval(interval);
+        }
+        
+        iteration += 1/3;
+      }, 50);
+    }
+    
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+    
+    // Add typing effect to subtitle
+    const subtitle = document.querySelector('.subtitle');
+    if (subtitle) {
+      const text = subtitle.textContent;
+      subtitle.textContent = '';
+      let i = 0;
+      
+      const typeWriter = () => {
+        if (i < text.length) {
+          subtitle.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      };
+      
+      // Delay the typing effect
+      setTimeout(typeWriter, 2000);
+    }
+  </script>
 </body>
 </html>
