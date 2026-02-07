@@ -5,31 +5,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Guiar Oqba | Low-Level Systems Portfolio</title>
-  <meta name="description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
+  <title>Guiar Oqba | Low-Level Systems & Security Research</title>
+  <meta name="description" content="Low-level systems development, binary exploitation, security research, and high-performance tooling by Guiar Oqba. Specialized in C/Assembly, exploit development, and AI-native infrastructure." />
   <meta name="author" content="Guiar Oqba" />
   <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="low-level programming, C, Assembly, exploit development, security research, binary analysis, reverse engineering, AI-native systems, systems programming" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://okba14.github.io/" />
+  
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://okba14.github.io/" />
-  <meta property="og:title" content="Guiar Oqba | Low-Level Systems Portfolio" />
-  <meta property="og:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
+  <meta property="og:title" content="Guiar Oqba | Low-Level Systems & Security Research" />
+  <meta property="og:description" content="Low-level systems development, binary exploitation, security research, and high-performance tooling. Specialized in C/Assembly and exploit development." />
   <meta property="og:image" content="https://okba14.github.io/assets/1.jpg" />
+  <meta property="og:site_name" content="Guiar Oqba Portfolio" />
+  
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Guiar Oqba | Low-Level Systems Portfolio" />
-  <meta name="twitter:description" content="Low-level tooling, binary research, and C library development by Guiar Oqba." />
+  <meta name="twitter:title" content="Guiar Oqba | Low-Level Systems & Security Research" />
+  <meta name="twitter:description" content="Low-level systems development, binary exploitation, security research, and high-performance tooling." />
   <meta name="twitter:image" content="https://okba14.github.io/assets/1.jpg" />
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://okba14.github.io/assets/1.jpg" />
+  <link rel="apple-touch-icon" href="https://okba14.github.io/assets/1.jpg" />
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
   
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -39,10 +55,14 @@
       --primary-color: #00ffcc;
       --secondary-color: #ff00ff;
       --accent-color: #00ccff;
+      --danger-color: #ff4444;
+      --warning-color: #ffaa00;
       --bg-dark: #0a0a0a;
-      --bg-card: rgba(20, 20, 30, 0.8);
+      --bg-card: rgba(20, 20, 30, 0.85);
+      --bg-glass: rgba(10, 10, 15, 0.6);
       --text-primary: #f0f0f0;
       --text-secondary: #bbbbbb;
+      --border-glow: rgba(0, 255, 204, 0.3);
     }
     
     * {
@@ -51,12 +71,17 @@
       box-sizing: border-box;
     }
     
+    html {
+      scroll-behavior: smooth;
+    }
+    
     body {
       background-color: var(--bg-dark);
       color: var(--text-primary);
       font-family: 'Fira Code', monospace;
       overflow-x: hidden;
       position: relative;
+      line-height: 1.6;
     }
     
     /* Custom scrollbar */
@@ -65,11 +90,11 @@
     }
     
     ::-webkit-scrollbar-track {
-      background: rgba(20, 20, 30, 0.2);
+      background: rgba(20, 20, 30, 0.3);
     }
     
     ::-webkit-scrollbar-thumb {
-      background: var(--primary-color);
+      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
       border-radius: 4px;
     }
     
@@ -86,10 +111,10 @@
       height: 100%;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.7;
+      opacity: 0.6;
     }
     
-    /* Binary particles background */
+    /* Particles background */
     #particlesCanvas {
       position: fixed;
       top: 0;
@@ -98,20 +123,46 @@
       height: 100%;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.4;
+    }
+    
+    /* Scanline effect */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.1) 50%,
+        rgba(0,0,0,0.1)
+      );
+      background-size: 100% 4px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.3;
     }
     
     /* Navigation */
     .navbar {
-      background-color: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(10px);
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       padding: 15px 0;
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
       transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+      border-bottom: 1px solid var(--border-glow);
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(10, 10, 10, 0.95);
+      box-shadow: 0 5px 30px rgba(0, 255, 204, 0.15);
     }
     
     .navbar-brand {
@@ -119,17 +170,20 @@
       font-weight: 700;
       color: var(--primary-color) !important;
       font-size: 1.5rem;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
     
     .nav-link {
       color: var(--text-secondary) !important;
-      margin: 0 10px;
+      margin: 0 12px;
       transition: all 0.3s ease;
       position: relative;
+      font-weight: 500;
+      letter-spacing: 0.5px;
     }
     
-    .nav-link:hover {
+    .nav-link:hover, .nav-link.active {
       color: var(--primary-color) !important;
     }
     
@@ -140,11 +194,11 @@
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--primary-color);
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
       transition: width 0.3s ease;
     }
     
-    .nav-link:hover::after {
+    .nav-link:hover::after, .nav-link.active::after {
       width: 100%;
     }
     
@@ -161,33 +215,35 @@
       align-items: center;
     }
     
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
     .hero img {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       object-fit: cover;
       border-radius: 50%;
       border: 3px solid var(--primary-color);
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.4);
       margin-bottom: 25px;
       transition: all 0.5s ease;
-      animation: pulse 2s infinite;
+      animation: pulse-glow 2s infinite;
     }
     
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7), 0 0 30px rgba(0, 255, 204, 0.4);
       }
-      70% {
-        box-shadow: 0 0 0 15px rgba(0, 255, 204, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0);
+      50% {
+        box-shadow: 0 0 0 20px rgba(0, 255, 204, 0), 0 0 50px rgba(0, 255, 204, 0.6);
       }
     }
     
     .hero img:hover {
       transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
+      box-shadow: 0 0 50px rgba(0, 255, 204, 0.8);
     }
     
     .hero h1 {
@@ -195,49 +251,51 @@
       font-weight: 900;
       font-size: 3.5rem;
       margin-bottom: 15px;
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
-      letter-spacing: 2px;
-      animation: glow 2s ease-in-out infinite alternate;
+      background-clip: text;
+      letter-spacing: 3px;
+      animation: text-shimmer 3s ease-in-out infinite;
+      background-size: 200% auto;
     }
     
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px rgba(0, 255, 204, 0.5), 0 0 20px rgba(0, 255, 204, 0.3);
-      }
-      to {
-        text-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.5);
-      }
+    @keyframes text-shimmer {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
     
     .subtitle {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--text-secondary);
       margin-bottom: 30px;
       font-weight: 500;
       letter-spacing: 1px;
+      min-height: 1.5em;
     }
     
     .bio {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto 40px;
       font-size: 1.1rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.8;
+      padding: 0 20px;
     }
     
     .hero-buttons {
-      margin-top: 20px;
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
     
     .btn-custom {
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       color: var(--bg-dark);
       border: none;
-      padding: 12px 25px;
-      margin: 0 10px;
+      padding: 14px 28px;
       font-weight: 700;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
@@ -246,47 +304,73 @@
       z-index: 1;
       transition: all 0.3s ease;
       text-transform: uppercase;
+      border-radius: 5px;
+      font-size: 0.9rem;
     }
     
-    .btn-custom:before {
+    .btn-custom::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.2);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
       z-index: -1;
-      transition: all 0.3s ease;
-      transform: translateX(-100%);
     }
     
     .btn-custom:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 255, 204, 0.4);
       color: var(--bg-dark);
     }
     
-    .btn-custom:hover:before {
-      transform: translateX(0);
+    .btn-custom:hover::before {
+      left: 100%;
+    }
+    
+    .btn-outline-custom {
+      background: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 12px 26px;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      border-radius: 5px;
+    }
+    
+    .btn-outline-custom:hover {
+      background: var(--primary-color);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
     }
     
     /* Section styling */
     .section {
-      padding: 80px 0;
+      padding: 100px 0;
       position: relative;
       z-index: 2;
+    }
+    
+    .section-alt {
+      background: linear-gradient(180deg, rgba(0,255,204,0.03) 0%, transparent 50%);
     }
     
     .section-title {
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
       font-size: 2.5rem;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       text-align: center;
       position: relative;
       display: inline-block;
       width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
     
     .section-title::after {
@@ -295,53 +379,66 @@
       bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 120px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+      border-radius: 2px;
     }
     
     /* Cards */
     .card {
       background-color: var(--bg-card);
-      border: 1px solid rgba(0, 255, 204, 0.2);
-      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 204, 0.15);
+      border-radius: 12px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease;
       overflow: hidden;
       height: 100%;
     }
     
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0, 255, 204, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 255, 204, 0.2);
       border-color: var(--primary-color);
     }
     
     .card-header {
-      background-color: rgba(0, 255, 204, 0.1);
+      background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(0, 204, 255, 0.05));
       border-bottom: 1px solid rgba(0, 255, 204, 0.2);
-      padding: 15px 20px;
+      padding: 20px;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--primary-color);
+      font-family: 'Orbitron', sans-serif;
     }
     
     .card-body {
-      padding: 20px;
+      padding: 25px;
     }
     
-    .card h5,
-    .card h6,
-    .card p,
-    .card a {
-      color: var(--text-primary) !important;
-      font-weight: 500;
+    .card h5, .card h6 {
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 15px;
     }
     
     .card p {
-      color: var(--text-secondary) !important;
+      color: var(--text-secondary);
       margin-bottom: 15px;
+      line-height: 1.7;
+    }
+    
+    .card a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .card a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
     }
     
     /* Project showcase */
@@ -357,15 +454,47 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+    }
+    
+    .project-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .badge-featured {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--bg-dark);
+    }
+    
+    .badge-security {
+      background: linear-gradient(135deg, var(--danger-color), #ff6666);
+      color: white;
+    }
+    
+    .badge-ai {
+      background: linear-gradient(135deg, var(--secondary-color), #ff66ff);
+      color: white;
+    }
+    
+    .badge-performance {
+      background: linear-gradient(135deg, var(--warning-color), #ffcc00);
+      color: var(--bg-dark);
     }
     
     .project-stats {
       display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-      padding-top: 15px;
+      justify-content: space-around;
+      margin-top: 20px;
+      padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
@@ -374,72 +503,114 @@
     }
     
     .stat-value {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--primary-color);
+      font-family: 'Orbitron', sans-serif;
     }
     
     .stat-label {
       font-size: 0.8rem;
       color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Tech stack tags */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .tech-tag {
+      background: rgba(0, 255, 204, 0.1);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      color: var(--primary-color);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
     
     /* Terminal section */
     .terminal {
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      background-color: #0d0d0d;
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 255, 204, 0.05);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(0, 255, 204, 0.2);
+    }
+    
+    .terminal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+      opacity: 0.5;
     }
     
     .terminal-header {
       display: flex;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      align-items: center;
     }
     
     .terminal-button {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      margin-right: 8px;
+      margin-right: 10px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
     }
     
-    .terminal-button.red {
-      background-color: #ff5f56;
-    }
+    .terminal-button.red { background-color: #ff5f56; }
+    .terminal-button.yellow { background-color: #ffbd2e; }
+    .terminal-button.green { background-color: #27c93f; }
     
-    .terminal-button.yellow {
-      background-color: #ffbd2e;
-    }
-    
-    .terminal-button.green {
-      background-color: #27c93f;
+    .terminal-title {
+      margin-left: 15px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
     
     .terminal-body {
       font-family: 'Fira Code', monospace;
       color: #33ff33;
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
     
     .terminal-line {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fade-in 0.3s forwards;
+    }
+    
+    @keyframes fade-in {
+      to { opacity: 1; }
     }
     
     .terminal-prompt {
-      color: #00ffcc;
+      color: var(--primary-color);
+      font-weight: 600;
     }
     
     .terminal-cursor {
       display: inline-block;
       width: 10px;
-      height: 20px;
+      height: 18px;
       background-color: #33ff33;
       animation: blink 1s infinite;
+      vertical-align: middle;
+      margin-left: 2px;
     }
     
     @keyframes blink {
@@ -449,29 +620,49 @@
     
     /* Skills section */
     .skill-item {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
     
     .skill-name {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
-      font-weight: 500;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
     
     .skill-bar {
-      height: 10px;
+      height: 8px;
       background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
+      border-radius: 4px;
       overflow: hidden;
+      position: relative;
     }
     
     .skill-progress {
       height: 100%;
       background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      border-radius: 5px;
+      border-radius: 4px;
       width: 0;
-      transition: width 1.5s ease;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
     
     /* Timeline */
@@ -486,9 +677,10 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 2px;
+      width: 3px;
       height: 100%;
-      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color), var(--secondary-color));
+      border-radius: 3px;
     }
     
     .timeline-item {
@@ -499,45 +691,66 @@
     
     .timeline-item:nth-child(odd) {
       left: 0;
-      padding-right: 40px;
+      padding-right: 50px;
     }
     
     .timeline-item:nth-child(even) {
       left: 50%;
-      padding-left: 40px;
+      padding-left: 50px;
     }
     
     .timeline-content {
       background-color: var(--bg-card);
       border: 1px solid rgba(0, 255, 204, 0.2);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      right: -20px;
+      border-left-color: var(--bg-card);
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: -20px;
+      border-right-color: var(--bg-card);
     }
     
     .timeline-content:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 255, 204, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 255, 204, 0.15);
       border-color: var(--primary-color);
     }
     
     .timeline-dot {
       position: absolute;
-      top: 20px;
-      width: 20px;
-      height: 20px;
+      top: 30px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: var(--primary-color);
-      box-shadow: 0 0 0 4px rgba(0, 255, 204, 0.2);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      box-shadow: 0 0 0 6px rgba(0, 255, 204, 0.2);
+      z-index: 10;
     }
     
     .timeline-item:nth-child(odd) .timeline-dot {
-      right: -10px;
+      right: -12px;
     }
     
     .timeline-item:nth-child(even) .timeline-dot {
-      left: -10px;
+      left: -12px;
     }
     
     .timeline-date {
@@ -545,166 +758,223 @@
       color: var(--primary-color);
       margin-bottom: 10px;
       font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
     }
     
     .timeline-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      color: var(--text-primary);
     }
     
     .timeline-description {
       color: var(--text-secondary);
       font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    /* Achievement cards */
+    .achievement-card {
+      background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,0,0,0.05));
+      border: 1px solid rgba(255,0,0,0.3);
+    }
+    
+    .achievement-card:hover {
+      border-color: var(--danger-color);
+      box-shadow: 0 20px 50px rgba(255,0,0,0.2);
     }
     
     /* Contact section */
     .contact-item {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       transition: all 0.3s ease;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
     }
     
     .contact-item:hover {
       transform: translateX(10px);
+      background: rgba(0, 255, 204, 0.05);
     }
     
     .contact-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: rgba(0, 255, 204, 0.1);
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(0, 204, 255, 0.1));
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 20px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--primary-color);
       transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 204, 0.2);
     }
     
     .contact-item:hover .contact-icon {
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       color: var(--bg-dark);
       transform: scale(1.1);
+      border-color: transparent;
     }
     
     .contact-info h4 {
       margin: 0;
       font-size: 1.1rem;
+      color: var(--text-primary);
     }
     
     .contact-info p {
-      margin: 0;
+      margin: 5px 0 0;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-info a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
     }
     
     /* Footer */
     footer {
-      background-color: rgba(10, 10, 10, 0.8);
-      padding: 40px 0;
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      padding: 50px 0 30px;
       text-align: center;
-      border-top: 1px solid rgba(0, 255, 204, 0.2);
+      border-top: 1px solid var(--border-glow);
       position: relative;
       z-index: 2;
     }
     
     .social-links {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
     
     .social-links a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      border-radius: 50%;
-      background-color: rgba(0, 255, 204, 0.1);
+      display: inline-flex;
+      width: 45px;
+      height: 45px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(0, 204, 255, 0.1));
       color: var(--primary-color);
-      margin: 0 10px;
+      margin: 0 8px;
       transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      font-size: 1.2rem;
     }
     
     .social-links a:hover {
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       color: var(--bg-dark);
       transform: translateY(-5px);
+      border-color: transparent;
+      box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
     }
     
     /* Modal styling */
     .modal-content {
       background-color: var(--bg-card);
-      border: 1px solid rgba(0, 255, 204, 0.2);
+      border: 1px solid rgba(0, 255, 204, 0.3);
       color: var(--text-primary);
+      border-radius: 15px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
     }
     
     .modal-header {
       border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+      padding: 20px 25px;
     }
     
     .modal-title {
       color: var(--primary-color);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
     }
     
     .btn-close {
-      filter: invert(1);
+      filter: invert(1) brightness(200%);
+      opacity: 0.8;
+    }
+    
+    .btn-close:hover {
+      opacity: 1;
     }
     
     /* Hex viewer */
     #hexDump {
       font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
-      line-height: 1.4;
+      font-size: 0.85rem;
+      line-height: 1.6;
       color: #33ff33;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 5px;
+      background-color: #0d0d0d;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      max-height: 500px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        left: 0 !important;
-        padding-left: 40px !important;
-        padding-right: 0 !important;
-      }
-      
-      .timeline::before {
-        left: 20px;
-      }
-      
-      .timeline-dot {
-        left: 10px !important;
-        right: auto !important;
-      }
+    /* Glitch effect for special elements */
+    .glitch {
+      position: relative;
     }
     
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .subtitle {
-        font-size: 1.2rem;
-      }
-      
-      .bio {
-        font-size: 1rem;
-      }
-      
-      .btn-custom {
-        margin: 5px;
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 var(--danger-color);
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 var(--accent-color);
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim 2.5s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim {
+      0% { clip: rect(10px, 9999px, 85px, 0); }
+      20% { clip: rect(65px, 9999px, 99px, 0); }
+      40% { clip: rect(15px, 9999px, 135px, 0); }
+      60% { clip: rect(80px, 9999px, 5px, 0); }
+      80% { clip: rect(40px, 9999px, 110px, 0); }
+      100% { clip: rect(95px, 9999px, 60px, 0); }
+    }
+    
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(65px, 9999px, 100px, 0); }
+      20% { clip: rect(20px, 9999px, 60px, 0); }
+      40% { clip: rect(90px, 9999px, 10px, 0); }
+      60% { clip: rect(30px, 9999px, 80px, 0); }
+      80% { clip: rect(70px, 9999px, 40px, 0); }
+      100% { clip: rect(10px, 9999px, 120px, 0); }
     }
     
     /* Loading animation */
@@ -719,13 +989,13 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
     
     .loader {
       position: relative;
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
     }
     
     .loader-circle {
@@ -734,7 +1004,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      border: 3px solid rgba(0, 255, 204, 0.2);
+      border: 4px solid transparent;
+      border-top-color: var(--primary-color);
       border-radius: 50%;
       animation: rotate 2s linear infinite;
     }
@@ -744,7 +1015,7 @@
       height: 80%;
       top: 10%;
       left: 10%;
-      border-color: rgba(0, 204, 255, 0.4);
+      border-top-color: var(--accent-color);
       animation-duration: 1.5s;
       animation-direction: reverse;
     }
@@ -754,7 +1025,7 @@
       height: 60%;
       top: 20%;
       left: 20%;
-      border-color: rgba(255, 0, 255, 0.6);
+      border-top-color: var(--secondary-color);
       animation-duration: 1s;
     }
     
@@ -765,35 +1036,123 @@
     
     .loader-text {
       position: absolute;
-      bottom: -40px;
+      bottom: -50px;
       left: 0;
       width: 100%;
       text-align: center;
       color: var(--primary-color);
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      font-size: 1.1rem;
+      animation: pulse-text 1.5s infinite;
+    }
+    
+    @keyframes pulse-text {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 50px !important;
+        padding-right: 0 !important;
+      }
+      
+      .timeline::before {
+        left: 25px;
+      }
+      
+      .timeline-dot {
+        left: 14px !important;
+        right: auto !important;
+      }
+      
+      .timeline-content::before {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .bio {
+        font-size: 0.95rem;
+      }
+      
+      .btn-custom, .btn-outline-custom {
+        padding: 12px 20px;
+        font-size: 0.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+    }
+    
+    /* Security focus highlight */
+    .security-highlight {
+      color: var(--danger-color);
+      font-weight: 600;
+    }
+    
+    .performance-highlight {
+      color: var(--warning-color);
+      font-weight: 600;
+    }
+    
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
   <!-- Loader -->
-  <div class="loader-wrapper" id="loader">
+  <div class="loader-wrapper" id="loader" role="status" aria-label="Loading">
     <div class="loader">
       <div class="loader-circle"></div>
       <div class="loader-circle"></div>
       <div class="loader-circle"></div>
-      <div class="loader-text">LOADING...</div>
+      <div class="loader-text">INITIALIZING...</div>
     </div>
   </div>
 
+  <!-- Scanline overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand" href="#home">
-        <span class="binary-text">GUIAR</span>
+      <a class="navbar-brand" href="#home" aria-label="Guiar Oqba Home">
+        <span class="binary-text" data-text="GUIAR">GUIAR</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -805,10 +1164,13 @@
             <a class="nav-link" href="#projects">Projects</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#research">Research</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#skills">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#timeline">Timeline</a>
+            <a class="nav-link" href="#timeline">Journey</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#contact">Contact</a>
@@ -819,100 +1181,220 @@
   </nav>
 
   <!-- Matrix Canvas Background -->
-  <canvas id="matrixCanvas"></canvas>
+  <canvas id="matrixCanvas" aria-hidden="true"></canvas>
   
   <!-- Particles Canvas Background -->
-  <canvas id="particlesCanvas"></canvas>
+  <canvas id="particlesCanvas" aria-hidden="true"></canvas>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
-    <div class="container">
-      <img src="assets/1.jpg" alt="Guiar Logo" class="animate__animated animate__fadeInDown" />
-      <h1 class="animate__animated animate__fadeIn">GUIAR OQBA</h1>
-      <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Low-Level Systems Developer | Security Researcher | Binary Explorer</p>
+    <div class="container hero-content">
+      <img src="assets/1.jpg" alt="Guiar Oqba Profile" class="animate__animated animate__fadeInDown" loading="eager" />
+      <h1 class="animate__animated animate__fadeIn glitch" data-text="GUIAR OQBA">GUIAR OQBA</h1>
+      <p class="subtitle animate__animated animate__fadeIn animate__delay-1s" id="typing-text"></p>
       <p class="bio animate__animated animate__fadeIn animate__delay-2s">
-        Breaking systems to make them stronger. Builder of <strong>GuiarStr</strong>, a modern C string library designed for performance, safety, and simplicity. Passionate about open-source development and reversing technologies.
+        Systems programmer specializing in <strong>low-level development</strong>, <strong class="security-highlight">exploit development</strong>, and <strong>AI-native infrastructure</strong>. 
+        Building high-performance tools in <strong>C/Assembly</strong>, researching security vulnerabilities, and pushing the boundaries of systems engineering. 
+        Creator of <strong>NeuroHTTP</strong>, <strong>GuiarStr</strong>, and <strong>FastScan</strong>.
       </p>
       <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-3s">
-        <button class="btn btn-custom" onclick="showHex()">
-          <i class="fas fa-code"></i> Live Hex Viewer
+        <button class="btn btn-custom" onclick="showHex()" aria-label="Open hex viewer">
+          <i class="fas fa-code"></i> Hex Viewer
         </button>
-        <button class="btn btn-custom" onclick="disassemblePage()">
-          <i class="fas fa-microchip"></i> Disassemble This Page
-        </button>
-        <button class="btn btn-custom" onclick="showTerminal()">
+        <button class="btn btn-outline-custom" onclick="showTerminal()" aria-label="Open terminal">
           <i class="fas fa-terminal"></i> Terminal
         </button>
+        <a href="#projects" class="btn btn-custom">
+          <i class="fas fa-rocket"></i> View Projects
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Featured Project Section -->
-  <section id="projects" class="section">
+  <!-- Featured Projects Section -->
+  <section id="projects" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">📦 FEATURED PROJECT: GUIARSTR</h2>
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
+      <h2 class="section-title reveal">🚀 FLAGSHIP PROJECTS</h2>
+      
+      <!-- NeuroHTTP -->
+      <div class="row mb-5 reveal">
+        <div class="col-lg-10 mx-auto">
           <div class="card project-card">
-            <div class="card-header">
-              <h3 class="mb-0">GuiarStr - C String Utility Library</h3>
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+              <h3 class="mb-0">NeuroHTTP</h3>
+              <div>
+                <span class="project-badge badge-ai">AI-Native</span>
+                <span class="project-badge badge-performance">High-Performance</span>
+              </div>
             </div>
             <div class="card-body">
               <p class="lead">
-                GuiarStr is a lightweight and secure C string library designed to replace unsafe functions with clean, modular, and testable components.
+                <strong>Fast AI-Native Web Server</strong> — High-performance server built from scratch in <strong>C + Assembly</strong> designed to handle heavy AI payloads with minimal latency.
               </p>
               <div class="row">
                 <div class="col-md-6">
-                  <h5>Key Features:</h5>
-                  <ul>
-                    <li>Memory-safe string operations</li>
-                    <li>Buffer overflow protection</li>
-                    <li>UTF-8 support</li>
-                    <li>Minimal memory footprint</li>
-                    <li>Comprehensive test suite</li>
+                  <h6><i class="fas fa-bolt text-warning"></i> Core Features:</h6>
+                  <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>Zero-copy architecture</li>
+                    <li><i class="fas fa-check text-success me-2"></i>SIMD-optimized request parsing</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Lock-free concurrency</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Memory pool allocation</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Sub-millisecond latency</li>
                   </ul>
                 </div>
                 <div class="col-md-6">
-                  <h5>Use Cases:</h5>
-                  <ul>
-                    <li>Systems programming</li>
-                    <li>Embedded development</li>
-                    <li>Security-critical applications</li>
-                    <li>Performance-sensitive code</li>
-                    <li>Legacy code modernization</li>
-                  </ul>
+                  <h6><i class="fas fa-microchip text-info"></i> Technical Stack:</h6>
+                  <div class="tech-stack">
+                    <span class="tech-tag">C11</span>
+                    <span class="tech-tag">x86-64 Assembly</span>
+                    <span class="tech-tag">epoll/kqueue</span>
+                    <span class="tech-tag">SIMD (AVX2)</span>
+                    <span class="tech-tag">Zero-Copy</span>
+                    <span class="tech-tag">Lock-Free</span>
+                  </div>
                 </div>
               </div>
               <div class="project-stats">
                 <div class="stat">
-                  <div class="stat-value">1.0.0</div>
-                  <div class="stat-label">Latest Release</div>
+                  <div class="stat-value">C/ASM</div>
+                  <div class="stat-label">Core Stack</div>
                 </div>
                 <div class="stat">
-                  <div class="stat-value">20+</div>
-                  <div class="stat-label">Functions</div>
+                  <div class="stat-value">AI</div>
+                  <div class="stat-label">Optimized</div>
                 </div>
                 <div class="stat">
-                  <div class="stat-value">MIT</div>
-                  <div class="stat-label">License</div>
-                </div>
-                <div class="stat">
-                  <div class="stat-value">100%</div>
-                  <div class="stat-label">C99 Compatible</div>
+                  <div class="stat-value">Low</div>
+                  <div class="stat-label">Latency</div>
                 </div>
               </div>
-              <div class="d-flex flex-wrap mt-4">
-                <a href="https://github.com/okba14/guiarstr" class="btn btn-custom m-1" target="_blank">
-                  <i class="fab fa-github"></i> View on GitHub
+              <div class="d-flex flex-wrap mt-4 gap-2">
+                <a href="https://github.com/okba14/NeuroHTTP" class="btn btn-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i> View Source
                 </a>
-                <a href="https://libraries.io/github/okba14/guiarstr" class="btn btn-custom m-1" target="_blank">
-                  <i class="fas fa-book"></i> Libraries.io
+                <a href="https://github.com/okba14/NeuroHTTP/blob/main/README.md" class="btn btn-outline-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fas fa-book"></i> Documentation
                 </a>
-                <a href="https://www.libhunt.com/r/guiarstr" class="btn btn-custom m-1" target="_blank">
-                  <i class="fas fa-chart-line"></i> LibHunt
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FastScan -->
+      <div class="row mb-5 reveal">
+        <div class="col-lg-10 mx-auto">
+          <div class="card project-card">
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+              <h3 class="mb-0">FastScan</h3>
+              <div>
+                <span class="project-badge badge-performance">High-Performance</span>
+                <span class="project-badge badge-featured">Node.js Native</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="lead">
+                <strong>High-performance file scanning engine</strong> for Node.js designed to search massive files (GB-scale logs) with <strong>near-native speed</strong>, minimal memory usage, and non-blocking async execution.
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6><i class="fas fa-rocket text-warning"></i> Performance Features:</h6>
+                  <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>Native C (POSIX + mmap)</li>
+                    <li><i class="fas fa-check text-success me-2"></i>SIMD acceleration (SSE2)</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Parallel scanning (multi-core)</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Safe memory ownership</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Zero-Copy results</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6><i class="fas fa-layer-group text-info"></i> Architecture:</h6>
+                  <div class="tech-stack">
+                    <span class="tech-tag">C/C++</span>
+                    <span class="tech-tag">Node-API</span>
+                    <span class="tech-tag">mmap</span>
+                    <span class="tech-tag">SIMD</span>
+                    <span class="tech-tag">Thread Pool</span>
+                    <span class="tech-tag">Zero-Copy</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="stat">
+                  <div class="stat-value">GB+</div>
+                  <div class="stat-label">File Support</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">SIMD</div>
+                  <div class="stat-label">Accelerated</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">Async</div>
+                  <div class="stat-label">Non-blocking</div>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap mt-4 gap-2">
+                <a href="https://github.com/okba14/FastScan" class="btn btn-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i> View Source
                 </a>
-                <a href="https://github.com/okba14/guiarstr/releases/tag/v1.0.0" class="btn btn-custom m-1" target="_blank">
-                  <i class="fas fa-download"></i> Download v1.0.0
+                <a href="https://www.npmjs.com/package/fastscan" class="btn btn-outline-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-npm"></i> NPM Package
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GuiarStr -->
+      <div class="row reveal">
+        <div class="col-lg-10 mx-auto">
+          <div class="card project-card">
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+              <h3 class="mb-0">GuiarStr</h3>
+              <div>
+                <span class="project-badge badge-featured">Security-First</span>
+                <span class="tech-tag">C99</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="lead">
+                Modern C string library designed for <strong>performance, safety, and simplicity</strong>. Replaces unsafe functions with clean, modular, and testable components.
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Key Features:</h6>
+                  <ul class="list-unstyled">
+                    <li><i class="fas fa-shield-alt text-success me-2"></i>Memory-safe operations</li>
+                    <li><i class="fas fa-shield-alt text-success me-2"></i>Buffer overflow protection</li>
+                    <li><i class="fas fa-globe text-info me-2"></i>UTF-8 support</li>
+                    <li><i class="fas fa-memory text-warning me-2"></i>Minimal footprint</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6>Project Stats:</h6>
+                  <div class="project-stats" style="margin-top: 0; border-top: none;">
+                    <div class="stat">
+                      <div class="stat-value">1.0.0</div>
+                      <div class="stat-label">Release</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">20+</div>
+                      <div class="stat-label">Functions</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">MIT</div>
+                      <div class="stat-label">License</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap mt-4 gap-2">
+                <a href="https://github.com/okba14/guiarstr" class="btn btn-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://github.com/okba14/guiarstr/releases" class="btn btn-outline-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fas fa-download"></i> Releases
                 </a>
               </div>
             </div>
@@ -922,50 +1404,87 @@
     </div>
   </section>
 
-  <!-- Other Projects Section -->
-  <section class="section bg-dark bg-opacity-25">
+  <!-- Security Research Section -->
+  <section id="research" class="section">
     <div class="container">
-      <h2 class="section-title">🛠️ OTHER PROJECTS & TOOLS</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0">Frida Hook Toolkit</h5>
+      <h2 class="section-title reveal">🔒 SECURITY RESEARCH</h2>
+      
+      <!-- Samba Vulnerability -->
+      <div class="row mb-5 reveal">
+        <div class="col-lg-10 mx-auto">
+          <div class="card project-card achievement-card">
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap" style="background: linear-gradient(135deg, rgba(255,0,0,0.15), rgba(255,0,0,0.05));">
+              <h3 class="mb-0"><i class="fas fa-bug me-2"></i> Samba CTDB Socket Vulnerability</h3>
+              <span class="project-badge badge-security">CVE-worthy</span>
             </div>
             <div class="card-body">
-              <p>Custom C-level hooks for analyzing Android/iOS apps and browser traffic.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-primary">Security</span>
-                <span class="badge bg-secondary">Reverse Engineering</span>
+              <p class="lead">
+                <strong>Security analysis and responsible disclosure</strong> of a critical CTDB socket handling vulnerability in Samba affecting clustered database deployments.
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6><i class="fas fa-search text-danger"></i> Vulnerability Details:</h6>
+                  <ul class="list-unstyled">
+                    <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>Socket descriptor mishandling</li>
+                    <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>Potential privilege escalation</li>
+                    <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>Cluster-wide impact</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i>Responsible disclosure process</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6><i class="fas fa-tools text-info"></i> Research Methods:</h6>
+                  <div class="tech-stack">
+                    <span class="tech-tag">Static Analysis</span>
+                    <span class="tech-tag">Dynamic Analysis</span>
+                    <span class="tech-tag">Fuzzing</span>
+                    <span class="tech-tag">Reverse Engineering</span>
+                    <span class="tech-tag">C Code Review</span>
+                  </div>
+                </div>
+              </div>
+              <div class="alert mt-3" style="background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.3); color: #ffaaaa;">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Impact:</strong> This vulnerability demonstrates deep understanding of low-level socket programming, IPC mechanisms, and systems security auditing.
+              </div>
+              <div class="d-flex flex-wrap mt-4 gap-2">
+                <a href="https://github.com/okba14/Samba-CTDB-CTDB_SOCKET-Security-Issue" class="btn btn-custom" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #ff4444, #ff6666);">
+                  <i class="fas fa-shield-alt"></i> View Advisory
+                </a>
+                <a href="https://bugzilla.samba.org/" class="btn btn-outline-custom" target="_blank" rel="noopener noreferrer">
+                  <i class="fas fa-external-link-alt"></i> Samba Bugzilla
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
+      </div>
+
+      <!-- Published Reports -->
+      <div class="row reveal">
+        <div class="col-12">
+          <h3 class="mb-4 text-center" style="color: var(--primary-color); font-family: 'Orbitron', sans-serif;">
+            <i class="fas fa-file-alt me-2"></i>Published Research
+          </h3>
+        </div>
+        <div class="col-md-6 mb-4">
           <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0">String Hunter</h5>
-            </div>
             <div class="card-body">
-              <p>Recursive sensitive string scanner in binary files with pattern matching and entropy filter.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-primary">Forensics</span>
-                <span class="badge bg-secondary">Binary Analysis</span>
-              </div>
+              <h5>Entropy Patterns in 24-Word Mnemonic Phrases</h5>
+              <p class="text-muted">Third Report on statistical weaknesses in BIP39 implementation and entropy distribution.</p>
+              <a href="https://zenodo.org/records/15786076" class="btn btn-custom btn-sm" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> View on Zenodo
+              </a>
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-4">
           <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0">r2 Power Scripts</h5>
-            </div>
             <div class="card-body">
-              <p>Advanced r2 + GDB automation scripts for tracing memory and symbol resolution.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-primary">Debugging</span>
-                <span class="badge bg-secondary">Automation</span>
-              </div>
+              <h5>Statistical Weaknesses in BIP39 Seed Phrases</h5>
+              <p class="text-muted">Comprehensive analysis of real-world implications of entropy weaknesses in cryptocurrency wallets.</p>
+              <a href="https://okba-sec.hashnode.dev/statistical-weaknesses-in-bip39-seed-phrases-and-their-real-world-implications" class="btn btn-custom btn-sm" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Read Article
+              </a>
             </div>
           </div>
         </div>
@@ -973,30 +1492,53 @@
     </div>
   </section>
 
-  <!-- Published Reports Section -->
-  <section class="section">
+  <!-- Other Tools Section -->
+  <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title">🧾 PUBLISHED REPORTS</h2>
+      <h2 class="section-title reveal">🛠️ SECURITY TOOLKIT</h2>
       <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4 reveal">
           <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-mobile-alt me-2"></i>Frida Hook Toolkit</h5>
+            </div>
             <div class="card-body">
-              <h5>Report Title #1</h5>
-              <p>Third Report on Entropy Patterns Concerning Repetitions in 24-Word Mnemonic Phrases.</p>
-              <a href="https://zenodo.org/records/15786076" class="btn btn-custom btn-sm" target="_blank">
-                <i class="fas fa-external-link-alt"></i> View Report
-              </a>
+              <p>Custom C-level hooks for analyzing Android/iOS apps and intercepting browser traffic at the native layer.</p>
+              <div class="tech-stack mt-3">
+                <span class="tech-tag">Frida</span>
+                <span class="tech-tag">C</span>
+                <span class="tech-tag">ARM</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4 reveal">
           <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-search me-2"></i>String Hunter</h5>
+            </div>
             <div class="card-body">
-              <h5>Report Title #2</h5>
-              <p>Statistical Weaknesses in BIP39 Seed Phrases and Their Real-World Implications</p>
-              <a href="https://okba-sec.hashnode.dev/statistical-weaknesses-in-bip39-seed-phrases-and-their-real-world-implications" class="btn btn-custom btn-sm" target="_blank">
-                <i class="fas fa-external-link-alt"></i> View Report
-              </a>
+              <p>Recursive sensitive string scanner in binary files with pattern matching and entropy filtering for forensics.</p>
+              <div class="tech-stack mt-3">
+                <span class="tech-tag">C++</span>
+                <span class="tech-tag">Binary</span>
+                <span class="tech-tag">Forensics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 reveal">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-terminal me-2"></i>r2 Power Scripts</h5>
+            </div>
+            <div class="card-body">
+              <p>Advanced Radare2 + GDB automation scripts for tracing memory allocations and symbol resolution.</p>
+              <div class="tech-stack mt-3">
+                <span class="tech-tag">r2</span>
+                <span class="tech-tag">GDB</span>
+                <span class="tech-tag">Python</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1005,23 +1547,43 @@
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="section bg-dark bg-opacity-25">
+  <section id="skills" class="section">
     <div class="container">
-      <h2 class="section-title">🔧 TECHNICAL SKILLS</h2>
+      <h2 class="section-title reveal">⚡ TECHNICAL ARSENAL</h2>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 reveal">
           <div class="skill-item">
             <div class="skill-name">
-              <span>C/C++</span>
-              <span>95%</span>
+              <span>C/C++ Systems Programming</span>
+              <span>98%</span>
             </div>
             <div class="skill-bar">
-              <div class="skill-progress" data-width="95%"></div>
+              <div class="skill-progress" data-width="98%"></div>
             </div>
           </div>
           <div class="skill-item">
             <div class="skill-name">
-              <span>x86/ARM Assembly</span>
+              <span>x86-64/ARM Assembly</span>
+              <span>92%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="92%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Exploit Development</span>
+              <span>88%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="88%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 reveal">
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Reverse Engineering</span>
               <span>90%</span>
             </div>
             <div class="skill-bar">
@@ -1030,101 +1592,134 @@
           </div>
           <div class="skill-item">
             <div class="skill-name">
-              <span>Reverse Engineering</span>
+              <span>Binary Exploitation</span>
               <span>85%</span>
             </div>
             <div class="skill-bar">
               <div class="skill-progress" data-width="85%"></div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
           <div class="skill-item">
             <div class="skill-name">
-              <span>Binary Exploitation</span>
-              <span>80%</span>
+              <span>AI Systems Infrastructure</span>
+              <span>82%</span>
             </div>
             <div class="skill-bar">
-              <div class="skill-progress" data-width="80%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">
-              <span>Cryptography</span>
-              <span>75%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="75%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">
-              <span>Web3 & Blockchain</span>
-              <span>70%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" data-width="70%"></div>
+              <div class="skill-progress" data-width="82%"></div>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="terminal mt-5">
+      <div class="terminal mt-5 reveal">
         <div class="terminal-header">
           <div class="terminal-button red"></div>
           <div class="terminal-button yellow"></div>
           <div class="terminal-button green"></div>
+          <span class="terminal-title">guiar@dev:~$ neofetch</span>
         </div>
-        <div class="terminal-body">
-          <div class="terminal-line"><span class="terminal-prompt">$</span> whoami</div>
-          <div class="terminal-line">guiar_oqba</div>
-          <div class="terminal-line"><span class="terminal-prompt">$</span> cat skills.txt</div>
-          <div class="terminal-line">Low-level systems programming</div>
-          <div class="terminal-line">Binary analysis and reverse engineering</div>
-          <div class="terminal-line">Security research and vulnerability assessment</div>
-          <div class="terminal-line">C library development and optimization</div>
-          <div class="terminal-line"><span class="terminal-prompt">$</span> _</div>
-          <div class="terminal-cursor"></div>
+        <div class="terminal-body" id="neofetch-content">
+          <div class="terminal-line" style="animation-delay: 0.1s;">
+            <span style="color: var(--primary-color);">OS:</span> Low-Level Systems
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.2s;">
+            <span style="color: var(--primary-color);">Host:</span> Security Research & Exploit Dev
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.3s;">
+            <span style="color: var(--primary-color);">Kernel:</span> C/Assembly Optimization
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.4s;">
+            <span style="color: var(--primary-color);">Uptime:</span> 5+ years in systems programming
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.5s;">
+            <span style="color: var(--primary-color);">Shell:</span> zsh + custom exploits
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.6s;">
+            <span style="color: var(--primary-color);">WM:</span> i3 + tmux workflow
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.7s;">
+            <span style="color: var(--primary-color);">Terminal:</span> alacritty + custom shaders
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.8s;">
+            <span style="color: var(--primary-color);">CPU:</span> Deep understanding of microarchitecture
+          </div>
+          <div class="terminal-line" style="animation-delay: 0.9s;">
+            <span style="color: var(--primary-color);">GPU:</span> CUDA for parallel payload processing
+          </div>
+          <div class="terminal-line" style="animation-delay: 1.0s;">
+            <span style="color: var(--primary-color);">Memory:</span> Manual management & optimization
+          </div>
+          <div class="terminal-line" style="animation-delay: 1.1s;">
+            <span class="terminal-prompt">$</span> <span class="terminal-cursor"></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Timeline Section -->
-  <section id="timeline" class="section">
+  <section id="timeline" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">📅 JOURNEY</h2>
+      <h2 class="section-title reveal">📅 JOURNEY</h2>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-date">2023 - Present</div>
-            <div class="timeline-title">GuiarStr Development</div>
-            <div class="timeline-description">Designed and developed GuiarStr, a modern C string library focused on security and performance.</div>
+            <div class="timeline-date">2024 - Present</div>
+            <div class="timeline-title">NeuroHTTP & AI Infrastructure</div>
+            <div class="timeline-description">
+              Building AI-native high-performance servers from scratch in C/Assembly. Focus on zero-copy architectures and sub-millisecond latency for ML workloads.
+            </div>
           </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-title">Samba Vulnerability Research</div>
+            <div class="timeline-description">
+              Discovered and disclosed critical CTDB socket handling vulnerability in Samba. Deep dive into IPC mechanisms and systems security auditing.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-title">FastScan Development</div>
+            <div class="timeline-description">
+              Created high-performance file scanning engine combining native C, SIMD acceleration, and Node.js native addons for GB-scale log processing.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-title">GuiarStr Library</div>
+            <div class="timeline-description">
+              Designed and developed modern C string library focused on memory safety and buffer overflow protection.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-date">2022</div>
-            <div class="timeline-title">Security Researcher</div>
-            <div class="timeline-description">Published research on statistical weaknesses in BIP39 seed phrases and their implications.</div>
+            <div class="timeline-title">Cryptographic Research</div>
+            <div class="timeline-description">
+              Published research on statistical weaknesses in BIP39 seed phrases and entropy patterns in mnemonic generation.
+            </div>
           </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-date">2021</div>
             <div class="timeline-title">Binary Analysis Tools</div>
-            <div class="timeline-description">Created custom tools for binary analysis and reverse engineering, including String Hunter and r2 scripts.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-date">2020</div>
-            <div class="timeline-title">Low-Level Programming</div>
-            <div class="timeline-description">Started deep dive into systems programming, assembly languages, and memory management.</div>
+            <div class="timeline-description">
+              Created custom tools for reverse engineering including String Hunter and advanced r2/GDB automation scripts.
+            </div>
           </div>
         </div>
       </div>
@@ -1132,11 +1727,11 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section bg-dark bg-opacity-25">
+  <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title">🌐 GET IN TOUCH</h2>
+      <h2 class="section-title reveal">🌐 CONNECT</h2>
       <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-8 mx-auto reveal">
           <div class="card">
             <div class="card-body">
               <div class="contact-item">
@@ -1145,7 +1740,7 @@
                 </div>
                 <div class="contact-info">
                   <h4>GitHub</h4>
-                  <p><a href="https://github.com/okba14" target="_blank">github.com/okba14</a></p>
+                  <p><a href="https://github.com/okba14" target="_blank" rel="noopener noreferrer">github.com/okba14</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -1153,8 +1748,8 @@
                   <i class="fas fa-id-card"></i>
                 </div>
                 <div class="contact-info">
-                  <h4>ORCID Profile</h4>
-                  <p><a href="https://orcid.org/0009-0008-1629-0002" target="_blank">orcid.org/0009-0008-1629-0002</a></p>
+                  <h4>ORCID</h4>
+                  <p><a href="https://orcid.org/0009-0008-1629-0002" target="_blank" rel="noopener noreferrer">0009-0008-1629-0002</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -1163,7 +1758,7 @@
                 </div>
                 <div class="contact-info">
                   <h4>Zenodo Community</h4>
-                  <p><a href="https://zenodo.org/communities/guiar/" target="_blank">zenodo.org/communities/guiar/</a></p>
+                  <p><a href="https://zenodo.org/communities/guiar/" target="_blank" rel="noopener noreferrer">zenodo.org/communities/guiar</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -1171,8 +1766,8 @@
                   <i class="fas fa-blog"></i>
                 </div>
                 <div class="contact-info">
-                  <h4>Hashnode Blog</h4>
-                  <p><a href="https://hashnode.com/@okba" target="_blank">hashnode.com/@okba</a></p>
+                  <h4>Security Blog</h4>
+                  <p><a href="https://okba-sec.hashnode.dev" target="_blank" rel="noopener noreferrer">okba-sec.hashnode.dev</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -1181,7 +1776,7 @@
                 </div>
                 <div class="contact-info">
                   <h4>Telegram</h4>
-                  <p><a href="https://t.me/@Okba_elkantara" target="_blank">@Okba_elkantara</a></p>
+                  <p><a href="https://t.me/Okba_elkantara" target="_blank" rel="noopener noreferrer">@maronyo</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -1190,16 +1785,7 @@
                 </div>
                 <div class="contact-info">
                   <h4>LinkedIn</h4>
-                  <p><a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank">linkedin.com/in/guiar-oqba</a></p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="fas fa-phone"></i>
-                </div>
-                <div class="contact-info">
-                  <h4>Phone</h4>
-                  <p><a href="tel:+213700000000">+213 671 36 04 38</a></p>
+                  <p><a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank" rel="noopener noreferrer">linkedin.com/in/guiar-oqba</a></p>
                 </div>
               </div>
             </div>
@@ -1213,61 +1799,65 @@
   <footer>
     <div class="container">
       <div class="social-links">
-        <a href="https://github.com/okba14" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://orcid.org/0009-0008-1629-0002" target="_blank"><i class="fas fa-id-card"></i></a>
-        <a href="https://hashnode.com/@okba" target="_blank"><i class="fas fa-blog"></i></a>
-        <a href="https://t.me/@Okba_elkantara" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/okba14" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://orcid.org/0009-0008-1629-0002" target="_blank" rel="noopener noreferrer" aria-label="ORCID"><i class="fas fa-id-card"></i></a>
+        <a href="https://okba-sec.hashnode.dev" target="_blank" rel="noopener noreferrer" aria-label="Blog"><i class="fas fa-blog"></i></a>
+        <a href="https://t.me/Okba_elkantara" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.linkedin.com/in/guiar-oqba-0207a9253" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
-      <p>&copy; 2025 <strong>Guiar Oqba</strong> • &#128187; All rights reserved</p>
-      <p><em>Focused on low-level tooling & binary research &#128295;</em></p>
+      <p class="mb-2">&copy; 2025 <strong style="color: var(--primary-color);">Guiar Oqba</strong> • Systems & Security</p>
+      <p style="font-size: 0.9rem; color: var(--text-secondary);">
+        <i class="fas fa-code me-1"></i> Built with raw C performance in mind
+        <span class="mx-2">|</span>
+        <i class="fas fa-shield-alt me-1"></i> Security-first architecture
+      </p>
     </div>
   </footer>
 
   <!-- Hex Viewer Modal -->
-  <div id="hexModal" class="modal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+  <div id="hexModal" class="modal fade" tabindex="-1" aria-labelledby="hexModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Live Hex Viewer</h5>
-          <button type="button" class="btn-close" onclick="closeHex()"></button>
+          <h5 class="modal-title" id="hexModalLabel"><i class="fas fa-code me-2"></i>Live Hex Viewer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <pre id="hexDump" style="max-height: 400px; overflow-y: auto;"></pre>
+          <pre id="hexDump"></pre>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-custom" onclick="closeHex()">Close</button>
+          <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Terminal Modal -->
-  <div id="terminalModal" class="modal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+  <div id="terminalModal" class="modal fade" tabindex="-1" aria-labelledby="terminalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Terminal</h5>
-          <button type="button" class="btn btn-close" onclick="closeTerminal()"></button>
+          <h5 class="modal-title" id="terminalModalLabel"><i class="fas fa-terminal me-2"></i>Interactive Terminal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-0">
-          <div class="terminal" style="border-radius: 0;">
+          <div class="terminal" style="border-radius: 0; margin-top: 0; border: none;">
             <div class="terminal-header">
               <div class="terminal-button red"></div>
               <div class="terminal-button yellow"></div>
               <div class="terminal-button green"></div>
+              <span class="terminal-title">guiar@dev:~$ bash</span>
             </div>
-            <div class="terminal-body" id="terminalBody">
+            <div class="terminal-body" id="terminalBody" style="max-height: 400px; overflow-y: auto;">
               <div class="terminal-line"><span class="terminal-prompt">$</span> ./welcome.sh</div>
-              <div class="terminal-line">Welcome to Guiar Oqba's Terminal</div>
+              <div class="terminal-line" style="color: var(--primary-color);">Welcome to Guiar Oqba's Terminal v2.0</div>
               <div class="terminal-line">Type 'help' for available commands</div>
-              <div class="terminal-line"><span class="terminal-prompt">$</span> _</div>
-              <div class="terminal-cursor"></div>
+              <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-cursor"></span></div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <input type="text" class="form-control" id="terminalInput" placeholder="Enter command..." style="background-color: #1e1e1e; border: 1px solid #444; color: #33ff33; font-family: 'Fira Code', monospace;">
+          <input type="text" class="form-control" id="terminalInput" placeholder="Enter command..." autocomplete="off" spellcheck="false" style="background-color: #0d0d0d; border: 1px solid rgba(0,255,204,0.3); color: #33ff33; font-family: 'Fira Code', monospace;">
           <button type="button" class="btn btn-custom" onclick="executeCommand()">Execute</button>
         </div>
       </div>
@@ -1275,22 +1865,29 @@
   </div>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   
   <!-- Custom Scripts -->
   <script>
+    'use strict';
+    
     // Page loader
     window.addEventListener('load', function() {
       setTimeout(function() {
         const loader = document.getElementById('loader');
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-      }, 1500);
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          setTimeout(() => loader.remove(), 600);
+        }
+      }, 1200);
     });
     
-    // Matrix effect
+    // Matrix effect with performance optimization
     const matrixCanvas = document.getElementById("matrixCanvas");
-    const matrixCtx = matrixCanvas.getContext("2d");
+    const matrixCtx = matrixCanvas.getContext("2d", { alpha: true });
+    let matrixAnimationId;
+    let isMatrixVisible = true;
     
     function resizeMatrixCanvas() {
       matrixCanvas.width = window.innerWidth;
@@ -1298,35 +1895,56 @@
     }
     
     resizeMatrixCanvas();
-    window.addEventListener('resize', resizeMatrixCanvas);
+    window.addEventListener('resize', debounce(resizeMatrixCanvas, 250));
     
-    const matrixChars = "01#@$%&<>[]/\\={}~`";
+    const matrixChars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
     const matrixFontSize = 14;
-    const matrixColumns = matrixCanvas.width / matrixFontSize;
-    const matrixDrops = Array(Math.floor(matrixColumns)).fill(1);
+    let matrixColumns = Math.floor(matrixCanvas.width / matrixFontSize);
+    let matrixDrops = new Array(matrixColumns).fill(1);
     
     function drawMatrix() {
-      matrixCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      if (!isMatrixVisible) return;
+      
+      matrixCtx.fillStyle = "rgba(10, 10, 10, 0.05)";
       matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      
       matrixCtx.fillStyle = "#00ffcc";
       matrixCtx.font = matrixFontSize + "px monospace";
       
       for (let i = 0; i < matrixDrops.length; i++) {
         const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        matrixCtx.fillText(char, i * matrixFontSize, matrixDrops[i] * matrixFontSize);
-        matrixDrops[i]++;
+        const x = i * matrixFontSize;
+        const y = matrixDrops[i] * matrixFontSize;
         
-        if (matrixDrops[i] * matrixFontSize > matrixCanvas.height && Math.random() > 0.975) {
+        matrixCtx.fillText(char, x, y);
+        
+        if (y > matrixCanvas.height && Math.random() > 0.975) {
           matrixDrops[i] = 0;
         }
+        matrixDrops[i]++;
       }
+      
+      matrixAnimationId = requestAnimationFrame(drawMatrix);
     }
     
-    let matrixInterval = setInterval(drawMatrix, 50);
+    // Pause matrix when tab is hidden
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        isMatrixVisible = false;
+        cancelAnimationFrame(matrixAnimationId);
+      } else {
+        isMatrixVisible = true;
+        drawMatrix();
+      }
+    });
+    
+    drawMatrix();
     
     // Particles effect
     const particlesCanvas = document.getElementById("particlesCanvas");
-    const particlesCtx = particlesCanvas.getContext("2d");
+    const particlesCtx = particlesCanvas.getContext("2d", { alpha: true });
+    let particlesAnimationId;
+    let isParticlesVisible = true;
     
     function resizeParticlesCanvas() {
       particlesCanvas.width = window.innerWidth;
@@ -1334,87 +1952,121 @@
     }
     
     resizeParticlesCanvas();
-    window.addEventListener('resize', resizeParticlesCanvas);
+    window.addEventListener('resize', debounce(resizeParticlesCanvas, 250));
     
     const particles = [];
-    const particleCount = 50;
+    const maxParticles = window.matchMedia('(pointer: coarse)').matches ? 25 : 50;
     
     class Particle {
       constructor() {
+        this.reset();
+      }
+      
+      reset() {
         this.x = Math.random() * particlesCanvas.width;
         this.y = Math.random() * particlesCanvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
         this.color = Math.random() > 0.5 ? '#00ffcc' : '#ff00ff';
+        this.opacity = Math.random() * 0.5 + 0.3;
       }
       
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
         
-        if (this.x < 0 || this.x > particlesCanvas.width) {
-          this.speedX = -this.speedX;
-        }
-        
-        if (this.y < 0 || this.y > particlesCanvas.height) {
-          this.speedY = -this.speedY;
-        }
+        if (this.x < 0 || this.x > particlesCanvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > particlesCanvas.height) this.speedY *= -1;
       }
       
       draw() {
-        particlesCtx.fillStyle = this.color;
         particlesCtx.beginPath();
         particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        particlesCtx.fillStyle = this.color;
+        particlesCtx.globalAlpha = this.opacity;
         particlesCtx.fill();
+        particlesCtx.globalAlpha = 1;
       }
     }
     
     function initParticles() {
-      for (let i = 0; i < particleCount; i++) {
+      for (let i = 0; i < maxParticles; i++) {
         particles.push(new Particle());
       }
     }
     
+    let frameCount = 0;
     function animateParticles() {
-      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+      if (!isParticlesVisible) return;
       
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+      frameCount++;
+      // Render every 2nd frame for performance
+      if (frameCount % 2 === 0) {
+        particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
         
-        // Draw connections between particles
-        for (let j = i; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
           
-          if (distance < 100) {
-            particlesCtx.beginPath();
-            particlesCtx.strokeStyle = `rgba(0, 255, 204, ${1 - distance / 100})`;
-            particlesCtx.lineWidth = 0.5;
-            particlesCtx.moveTo(particles[i].x, particles[i].y);
-            particlesCtx.lineTo(particles[j].x, particles[j].y);
-            particlesCtx.stroke();
+          // Draw connections (limited for performance)
+          if (i % 3 === 0) {
+            for (let j = i + 1; j < particles.length; j += 3) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              
+              if (distance < 100) {
+                particlesCtx.beginPath();
+                particlesCtx.strokeStyle = `rgba(0, 255, 204, ${0.2 * (1 - distance / 100)})`;
+                particlesCtx.lineWidth = 0.5;
+                particlesCtx.moveTo(particles[i].x, particles[i].y);
+                particlesCtx.lineTo(particles[j].x, particles[j].y);
+                particlesCtx.stroke();
+              }
+            }
           }
         }
       }
       
-      requestAnimationFrame(animateParticles);
+      particlesAnimationId = requestAnimationFrame(animateParticles);
     }
+    
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        isParticlesVisible = false;
+        cancelAnimationFrame(particlesAnimationId);
+      } else {
+        isParticlesVisible = true;
+        animateParticles();
+      }
+    });
     
     initParticles();
     animateParticles();
+    
+    // Utility: Debounce function
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
     
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+          const offsetTop = target.offsetTop - 80;
           window.scrollTo({
-            top: target.offsetTop - 70,
+            top: offsetTop,
             behavior: 'smooth'
           });
         }
@@ -1422,161 +2074,230 @@
     });
     
     // Navbar background on scroll
-    window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', debounce(function() {
       if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
-        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+        navbar.classList.add('scrolled');
       } else {
-        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.8)';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
       }
-    });
+    }, 50));
     
     // Active navigation link
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', debounce(function() {
       let current = '';
+      const scrollPos = window.scrollY + 100;
       
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         
-        if (scrollY >= (sectionTop - 100)) {
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
           current = section.getAttribute('id');
         }
       });
       
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
+        if (link.getAttribute('href') === '#' + current) {
           link.classList.add('active');
         }
       });
-    });
+    }, 100));
+    
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
     // Animate skill bars on scroll
     const skillBars = document.querySelectorAll('.skill-progress');
-    
-    function animateSkillBars() {
-      skillBars.forEach(bar => {
-        const barTop = bar.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (barTop < windowHeight - 100) {
-          const width = bar.getAttribute('data-width');
-          bar.style.width = width;
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const width = entry.target.getAttribute('data-width');
+          entry.target.style.width = width;
         }
       });
+    }, { threshold: 0.5 });
+    
+    skillBars.forEach(bar => skillObserver.observe(bar));
+    
+    // Typing effect for subtitle
+    const subtitleText = "Low-Level Systems Developer | Exploit Developer | Security Researcher";
+    const subtitleElement = document.getElementById('typing-text');
+    let charIndex = 0;
+    
+    function typeWriter() {
+      if (charIndex < subtitleText.length) {
+        subtitleElement.textContent += subtitleText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 50);
+      }
     }
     
-    window.addEventListener('scroll', animateSkillBars);
-    animateSkillBars(); // Initial check
+    setTimeout(typeWriter, 1000);
     
-    // Hex viewer
+    // Hex viewer functionality
     function showHex() {
       const html = document.documentElement.outerHTML;
-      let hex = "";
+      let hex = '';
+      const chunkSize = 32;
       
       for (let i = 0; i < html.length; i++) {
-        hex += html.charCodeAt(i).toString(16).padStart(2, "0") + " ";
+        const charCode = html.charCodeAt(i);
+        const hexValue = charCode.toString(16).padStart(2, '0');
+        hex += hexValue + ' ';
         
-        if ((i + 1) % 32 === 0) {
-          hex += "\n";
+        if ((i + 1) % chunkSize === 0) {
+          hex += '\n';
         }
       }
       
-      document.getElementById("hexDump").textContent = hex;
-      const hexModal = new bootstrap.Modal(document.getElementById('hexModal'));
-      hexModal.show();
+      const hexDump = document.getElementById("hexDump");
+      if (hexDump) {
+        hexDump.textContent = hex;
+        const modal = new bootstrap.Modal(document.getElementById('hexModal'));
+        modal.show();
+      }
     }
     
-    function closeHex() {
-      const hexModal = bootstrap.Modal.getInstance(document.getElementById('hexModal'));
-      hexModal.hide();
+    // Terminal functionality
+    const terminalModal = document.getElementById('terminalModal');
+    let commandHistory = [];
+    let historyIndex = -1;
+    
+    if (terminalModal) {
+      terminalModal.addEventListener('shown.bs.modal', function() {
+        document.getElementById('terminalInput').focus();
+      });
     }
     
-    // Disassemble button
-    function disassemblePage() {
-      const html = document.documentElement.outerHTML;
-      alert("Disassembled Length: " + html.length + " bytes");
-      console.log(html);
-    }
-    
-    // Terminal
     function showTerminal() {
-      const terminalModal = new bootstrap.Modal(document.getElementById('terminalModal'));
-      terminalModal.show();
-      document.getElementById('terminalInput').focus();
-    }
-    
-    function closeTerminal() {
-      const terminalModal = bootstrap.Modal.getInstance(document.getElementById('terminalModal'));
-      terminalModal.hide();
+      const modal = new bootstrap.Modal(document.getElementById('terminalModal'));
+      modal.show();
     }
     
     function executeCommand() {
       const input = document.getElementById('terminalInput');
-      const command = input.value.trim().toLowerCase();
+      const command = input.value.trim();
       const terminalBody = document.getElementById('terminalBody');
       
-      // Remove cursor
-      const cursor = terminalBody.querySelector('.terminal-cursor');
-      if (cursor) {
-        cursor.remove();
+      if (!command) return;
+      
+      // Add to history
+      commandHistory.push(command);
+      historyIndex = commandHistory.length;
+      
+      // Remove cursor from previous line
+      const prevCursor = terminalBody.querySelector('.terminal-cursor');
+      if (prevCursor) {
+        prevCursor.remove();
       }
       
-      // Add command to terminal
+      // Add command line
       const commandLine = document.createElement('div');
       commandLine.className = 'terminal-line';
-      commandLine.innerHTML = `<span class="terminal-prompt">$</span> ${command}`;
+      commandLine.innerHTML = `<span class="terminal-prompt">$</span> ${escapeHtml(command)}`;
       terminalBody.appendChild(commandLine);
       
       // Process command
       let response = '';
+      const cmd = command.toLowerCase();
       
-      switch(command) {
+      switch(cmd) {
         case 'help':
-          response = 'Available commands:<br>help - Show this help message<br>about - Information about Guiar Oqba<br>projects - List of projects<br>skills - Technical skills<br>contact - Contact information<br>clear - Clear terminal';
+          response = `<span style="color: var(--primary-color);">Available commands:</span><br>
+            <span style="color: var(--accent-color);">about</span> - Information about Guiar Oqba<br>
+            <span style="color: var(--accent-color);">projects</span> - List flagship projects<br>
+            <span style="color: var(--accent-color);">skills</span> - Technical skills<br>
+            <span style="color: var(--accent-color);">research</span> - Security research<br>
+            <span style="color: var(--accent-color);">contact</span> - Contact information<br>
+            <span style="color: var(--accent-color);">clear</span> - Clear terminal<br>
+            <span style="color: var(--accent-color);">neofetch</span> - System info`;
           break;
         case 'about':
-          response = 'Guiar Oqba - Low-Level Systems Developer<br>Passionate about systems programming, security research, and binary analysis.';
+          response = `<span style="color: var(--primary-color);">Guiar Oqba</span> - Systems Programmer & Security Researcher<br><br>
+            Specializing in:<br>
+            • Low-level systems development (C/Assembly)<br>
+            • Exploit development & binary exploitation<br>
+            • AI-native infrastructure & high-performance servers<br>
+            • Reverse engineering & vulnerability research`;
           break;
         case 'projects':
-          response = 'Projects:<br>- GuiarStr - C String Utility Library<br>- Frida Hook Toolkit<br>- String Hunter<br>- r2 Power Scripts';
+          response = `<span style="color: var(--primary-color);">Flagship Projects:</span><br><br>
+            <span style="color: var(--accent-color);">NeuroHTTP</span> - AI-native C/Assembly web server<br>
+            <span style="color: var(--accent-color);">FastScan</span> - High-performance file scanning engine<br>
+            <span style="color: var(--accent-color);">GuiarStr</span> - Secure C string library<br><br>
+            Type 'research' for security advisories.`;
           break;
         case 'skills':
-          response = 'Technical Skills:<br>- C/C++ (95%)<br>- x86/ARM Assembly (90%)<br>- Reverse Engineering (85%)<br>- Binary Exploitation (80%)<br>- Cryptography (75%)<br>- Web3 & Blockchain (70%)';
+          response = `<span style="color: var(--primary-color);">Technical Skills:</span><br><br>
+            C/C++ Systems Programming ..... 98%<br>
+            x86-64/ARM Assembly ........... 92%<br>
+            Exploit Development ........... 88%<br>
+            Reverse Engineering ........... 90%<br>
+            Binary Exploitation ........... 85%<br>
+            AI Systems Infrastructure ..... 82%`;
+          break;
+        case 'research':
+          response = `<span style="color: var(--danger-color);">Security Research:</span><br><br>
+            • Samba CTDB Socket Vulnerability (2024)<br>
+            • BIP39 Entropy Weaknesses (2022)<br>
+            • 24-Word Mnemonic Analysis<br><br>
+            <span style="color: var(--text-secondary);">Published on Zenodo & Hashnode</span>`;
           break;
         case 'contact':
-          response = 'Contact Information:<br>- GitHub: github.com/okba14<br>- Telegram: @Okba_elkantara<br>- Email: Contact through GitHub<br>- LinkedIn: linkedin.com/in/guiar-oqba';
+          response = `<span style="color: var(--primary-color);">Contact:</span><br><br>
+            GitHub: github.com/okba14<br>
+            Telegram: @Okba_elkantara<br>
+            LinkedIn: linkedin.com/in/guiar-oqba<br>
+            Blog: okba-sec.hashnode.dev`;
           break;
         case 'clear':
           terminalBody.innerHTML = '';
           break;
+        case 'neofetch':
+          response = `<span style="color: var(--primary-color);">OS:</span> Low-Level Systems<br>
+            <span style="color: var(--primary-color);">Host:</span> Security Research & Exploit Dev<br>
+            <span style="color: var(--primary-color);">Kernel:</span> C/Assembly Optimization<br>
+            <span style="color: var(--primary-color);">Shell:</span> zsh + custom exploits<br>
+            <span style="color: var(--primary-color);">WM:</span> i3 + tmux workflow`;
+          break;
+        case 'ls':
+          response = `<span style="color: var(--accent-color);">neurohttp/  fastscan/  guiarstr/  exploits/  research/</span>`;
+          break;
         default:
-          response = `Command not found: ${command}<br>Type 'help' for available commands`;
+          response = `<span style="color: var(--danger-color);">Command not found:</span> ${escapeHtml(command)}<br>Type 'help' for available commands`;
       }
       
-      if (response) {
+      if (response && cmd !== 'clear') {
         const responseLine = document.createElement('div');
         responseLine.className = 'terminal-line';
         responseLine.innerHTML = response;
+        responseLine.style.marginBottom = '15px';
         terminalBody.appendChild(responseLine);
       }
       
       // Add new prompt
       const newPromptLine = document.createElement('div');
       newPromptLine.className = 'terminal-line';
-      newPromptLine.innerHTML = '<span class="terminal-prompt">$</span> _';
+      newPromptLine.innerHTML = '<span class="terminal-prompt">$</span> <span class="terminal-cursor"></span>';
       terminalBody.appendChild(newPromptLine);
-      
-      // Add cursor
-      const newCursor = document.createElement('span');
-      newCursor.className = 'terminal-cursor';
-      newPromptLine.appendChild(newCursor);
       
       // Clear input
       input.value = '';
@@ -1585,69 +2306,88 @@
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
     
-    // Handle Enter key in terminal input
-    document.getElementById('terminalInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        executeCommand();
-      }
-    });
+    // Handle Enter key and arrow keys in terminal
+    const terminalInput = document.getElementById('terminalInput');
+    if (terminalInput) {
+      terminalInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          executeCommand();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (historyIndex > 0) {
+            historyIndex--;
+            this.value = commandHistory[historyIndex] || '';
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            this.value = commandHistory[historyIndex];
+          } else {
+            historyIndex = commandHistory.length;
+            this.value = '';
+          }
+        }
+      });
+    }
+    
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
     
     // Binary text animation for logo
     const binaryText = document.querySelector('.binary-text');
     if (binaryText) {
-      const originalText = binaryText.textContent;
+      const originalText = binaryText.getAttribute('data-text') || binaryText.textContent;
       const binaryChars = '01';
       let iteration = 0;
+      let interval;
       
-      const interval = setInterval(() => {
-        binaryText.textContent = binaryText.textContent
-          .split('')
-          .map((char, index) => {
-            if (index < iteration) {
-              return originalText[index];
-            }
-            return binaryChars[Math.floor(Math.random() * binaryChars.length)];
-          })
-          .join('');
-        
-        if (iteration >= originalText.length) {
-          clearInterval(interval);
-        }
-        
-        iteration += 1/3;
-      }, 50);
+      function startBinaryAnimation() {
+        interval = setInterval(() => {
+          binaryText.textContent = originalText
+            .split('')
+            .map((char, index) => {
+              if (index < iteration) {
+                return originalText[index];
+              }
+              return binaryChars[Math.floor(Math.random() * binaryChars.length)];
+            })
+            .join('');
+          
+          if (iteration >= originalText.length) {
+            clearInterval(interval);
+            setTimeout(() => {
+              iteration = 0;
+              startBinaryAnimation();
+            }, 5000);
+          }
+          
+          iteration += 1/3;
+        }, 50);
+      }
+      
+      startBinaryAnimation();
     }
     
-    // Add hover effects to cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-      });
+    // Add keyboard shortcut for terminal (Ctrl/Cmd + `)
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === '`') {
+        e.preventDefault();
+        showTerminal();
+      }
     });
     
-    // Add typing effect to subtitle
-    const subtitle = document.querySelector('.subtitle');
-    if (subtitle) {
-      const text = subtitle.textContent;
-      subtitle.textContent = '';
-      let i = 0;
-      
-      const typeWriter = () => {
-        if (i < text.length) {
-          subtitle.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 50);
-        }
-      };
-      
-      // Delay the typing effect
-      setTimeout(typeWriter, 2000);
-    }
+    // Performance: Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+      cancelAnimationFrame(matrixAnimationId);
+      cancelAnimationFrame(particlesAnimationId);
+      observer.disconnect();
+      skillObserver.disconnect();
+    });
   </script>
 </body>
 </html>
